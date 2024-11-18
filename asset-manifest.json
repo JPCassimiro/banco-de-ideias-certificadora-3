@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/banco-de-ideias-cetificadora-3/static/css/main.94010441.css",
-    "main.js": "/banco-de-ideias-cetificadora-3/static/js/main.100982be.js",
+    "main.css": "/banco-de-ideias-cetificadora-3/static/css/main.a8c5791f.css",
+    "main.js": "/banco-de-ideias-cetificadora-3/static/js/main.145d92c4.js",
     "static/js/453.c52c423c.chunk.js": "/banco-de-ideias-cetificadora-3/static/js/453.c52c423c.chunk.js",
     "index.html": "/banco-de-ideias-cetificadora-3/index.html",
-    "main.94010441.css.map": "/banco-de-ideias-cetificadora-3/static/css/main.94010441.css.map",
-    "main.100982be.js.map": "/banco-de-ideias-cetificadora-3/static/js/main.100982be.js.map",
+    "main.a8c5791f.css.map": "/banco-de-ideias-cetificadora-3/static/css/main.a8c5791f.css.map",
+    "main.145d92c4.js.map": "/banco-de-ideias-cetificadora-3/static/js/main.145d92c4.js.map",
     "453.c52c423c.chunk.js.map": "/banco-de-ideias-cetificadora-3/static/js/453.c52c423c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.94010441.css",
-    "static/js/main.100982be.js"
+    "static/css/main.a8c5791f.css",
+    "static/js/main.145d92c4.js"
   ]
 }
