@@ -32,10 +32,11 @@ const LoginPage = () => {
     e.preventDefault();
     console.log(email,password);
     if(regexEmail.test(email) === true && password !== ''){
-      await LoginFunction({email,password});
+      if(await LoginFunction({email,password})){
+        ChangeScreen("/banco-de-ideias-cetificadora-3/IdeasPage");
+      }
       setEmail('');
       setPassword('');
-      ChangeScreen("/banco-de-ideias-cetificadora-3/IdeasPage");
     }
     console.log(email,password);
   }

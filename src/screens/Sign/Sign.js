@@ -9,7 +9,7 @@ const SignPage = () =>{
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState(''); 
     const [name, setName] = useState(''); 
-    const [type, setType] = useState();
+    const [type, setType] = useState('');
     let navigate = useNavigate();
 
     const ChangeScreen = (path) =>{
@@ -37,12 +37,13 @@ const SignPage = () =>{
 
     const signUpHandle = async (e) =>{
         e.preventDefault();
-        await SingUpFunction({email,password,name,type});
+        if(await SingUpFunction({email,password,name,type})){
+            ChangeScreen("/banco-de-ideias-cetificadora-3/IdeasPage");
+        }
         setEmail('');
         setPassword('');
         setName('');
-        setType();
-        ChangeScreen("/banco-de-ideias-cetificadora-3/IdeasPage");
+        setType('');
     }
 
     return(

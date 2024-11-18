@@ -7,24 +7,32 @@ import { addDoc, collection, onSnapshot, query, setDoc, doc, deleteDoc } from 'f
 const collectionUserList = collection(db,"userCollectionList");
 
 const LoginFunction = async (props) =>{
+  let controlVariable;
   await signInWithEmailAndPassword(auth,props.email,props.password)
   .then(doc =>{
     console.log('Sucesso no login: ' + JSON.stringify(doc.user));
+    controlVariable = true;
   })
   .catch((e =>{
     console.log('Erro no Login: ' + JSON.stringify(e.code));
+    controlVariable = false;
   }))
+  return controlVariable;
 }
 
 const SingUpFunction = async (props) =>{
+  let controlVariable;
   await createUserWithEmailAndPassword(auth,props.email,props.password,props.name,props.type)
     .then(doc =>{
       console.log('Usuario criado com sucesso: ' + JSON.stringify(doc.user));
       addDataToListCollection(props.email,props.name,props.type);
+      controlVariable = true;
     })
     .catch(e =>{
       console.log('Erro na criação de usuario: ' + JSON.stringify(e.code));
+      controlVariable = false;
     })
+    return controlVariable;
 }
 
 //recebe email do usuario logado atualmente e um objeto com os dados da ideia
