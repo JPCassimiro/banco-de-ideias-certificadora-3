@@ -15,7 +15,7 @@ const LoginPage = () => {
   let navigate = useNavigate();
 
   const ChangeScreen = (path) =>{
-      navigate(path);
+    navigate(path);
   }
 
   // Função chamada ao alterar o campo de e-mail
@@ -30,16 +30,17 @@ const LoginPage = () => {
 
   const loginHandle = async (e) => {
     e.preventDefault();
-    console.log(email,password);
     if(regexEmail.test(email) === true && password !== ''){
-      if(await LoginFunction({email,password})){
-        ChangeScreen("/banco-de-ideias-cetificadora-3/IdeasPage");
+      let controlVariable = await LoginFunction({email,password});
+      if(controlVariable){
+        ChangeScreen(`/banco-de-ideias-cetificadora-3/IdeasPage/`);
       }
       setEmail('');
       setPassword('');
     }
-    console.log(email,password);
   }
+
+
 
   return (
     <div className="login-page">

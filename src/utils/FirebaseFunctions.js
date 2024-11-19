@@ -103,5 +103,5 @@ export{
     addDataToListCollection,
     addDataToUserCollection,
     deleteUserIdea,
-    getAllIdeiasList
+    getAllIdeiasList,
 }

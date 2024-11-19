@@ -38,7 +38,7 @@ const SignPage = () =>{
     const signUpHandle = async (e) =>{
         e.preventDefault();
         if(await SingUpFunction({email,password,name,type})){
-            ChangeScreen("/banco-de-ideias-cetificadora-3/IdeasPage");
+            ChangeScreen("/banco-de-ideias-cetificadora-3/LoginPage");
         }
         setEmail('');
         setPassword('');
@@ -48,7 +48,9 @@ const SignPage = () =>{
 
     return(
         <div className="sign-page">
+            <h1>Bem vindo</h1>
             <FormSign setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName} setUserType={setUserType} signUpHandle={signUpHandle}/>
+            <Button text={"Ja tenho conta"} onClick={()=>{ChangeScreen("/banco-de-ideias-cetificadora-3/LoginPage")}}/>
         </div>
     )
 }
@@ -60,7 +62,7 @@ function FormSign({setUserEmail,setUserPassword,setUserName,setUserType,signUpHa
             <InputField className="input-field" label="Senha" type="password" onChange={setUserPassword}/>
             <InputField className="input-field" label="Nome" type="text" onChange={setUserName}/>
             <InputField className="input-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType}/>
-            <InputField className="input-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="memeber" onChange={setUserType}/>
+            <InputField className="input-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType}/>
             <InputField className="input-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType}/>
             <Button onClick={signUpHandle} text="Cadastrar!"/>
         </form>
