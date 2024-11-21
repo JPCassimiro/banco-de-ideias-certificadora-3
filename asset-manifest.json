@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/banco-de-ideias-cetificadora-3/static/css/main.a8c5791f.css",
-    "main.js": "/banco-de-ideias-cetificadora-3/static/js/main.145d92c4.js",
+    "main.js": "/banco-de-ideias-cetificadora-3/static/js/main.d84b41ec.js",
     "static/js/453.c52c423c.chunk.js": "/banco-de-ideias-cetificadora-3/static/js/453.c52c423c.chunk.js",
     "index.html": "/banco-de-ideias-cetificadora-3/index.html",
     "main.a8c5791f.css.map": "/banco-de-ideias-cetificadora-3/static/css/main.a8c5791f.css.map",
-    "main.145d92c4.js.map": "/banco-de-ideias-cetificadora-3/static/js/main.145d92c4.js.map",
+    "main.d84b41ec.js.map": "/banco-de-ideias-cetificadora-3/static/js/main.d84b41ec.js.map",
     "453.c52c423c.chunk.js.map": "/banco-de-ideias-cetificadora-3/static/js/453.c52c423c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a8c5791f.css",
-    "static/js/main.145d92c4.js"
+    "static/js/main.d84b41ec.js"
   ]
 }
