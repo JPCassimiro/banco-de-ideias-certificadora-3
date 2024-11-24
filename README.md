@@ -1,4 +1,4 @@
-Esse é o repositório do projeto para a matéria certificadora de competências 3, da engenharia de computação do campus Cornélio Procópio da UTFPR. Nele temos um banco de ideias para uso no projeto de extensão [Meninas Digitais™][https://meninas.sbc.org.br].
+Esse é o repositório do projeto para a matéria certificadora de competências 3, da engenharia de computação do campus Cornélio Procópio da UTFPR. Nele temos um banco de ideias para uso no projeto de extensão [Meninas Digitais™](https://meninas.sbc.org.br).
 
 ## Membros
 <ul>
@@ -9,7 +9,7 @@ Esse é o repositório do projeto para a matéria certificadora de competências
 
 ## Uso
 
-O projeto se encontra hospedado no Github, através do recurso Pages, disponivel no link: [https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/][https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/]</br>
+O projeto se encontra hospedado no Github, através do recurso Pages, disponivel no link: [https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/](https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/)</br>
 É necessario criar uma conta para acessar o projeto.
 
 ## Instalação
@@ -24,7 +24,7 @@ Caso queira utilizar o projeto localmente siga os passos abaixo:
 <li>Na pasta do projeto execute o comando "npm run start".</li>
 </ol>
     
-[Node.js][https://nodejs.org/en]
+[Node.js](https://nodejs.org/en)
 
 ## Biblitecas Utilizadas(até o momento)
 
