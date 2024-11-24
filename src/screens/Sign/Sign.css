@@ -1,5 +1,3 @@
-/* Login.css */
-
 .sign-page {
     display: flex;
     flex-direction: column;
@@ -56,3 +54,6 @@
     background-color: #0056b3;
   }
   
+  .error-message{
+    color: #ED4337
+  }

@@ -6,52 +6,68 @@ import { Link, useNavigate } from "react-router-dom";
 import "../Sign/Sign.css"
 
 
-const SignPage = () =>{
-    const [email, setEmail] = useState(''); 
-    const [password, setPassword] = useState(''); 
-    const [name, setName] = useState(''); 
+const SignPage = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
     const [type, setType] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     let navigate = useNavigate();
+    const regexEmail = /^[A-Za-z0-9.+_-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$/;//checa email valido
 
-    const ChangeScreen = (path) =>{
+
+    const changeScreen = (path) => {
         navigate(path);
     }
 
-    // Função chamada ao alterar o campo de e-mail
+    //chamada ao alterar o campo de e-mail
     const setUserEmail = (e) => {
         setEmail(e.target.value);
     };
 
-    // Função chamada ao alterar o campo de senha
+    //chamada ao alterar o campo de senha
     const setUserPassword = (e) => {
         setPassword(e.target.value);
     };
 
+    //chamada ao alterar o campo de nome
     const setUserName = (e) => {
         setName(e.target.value);
     };
 
+    //chamada ao alterar o tipo 
     const setUserType = (e) => {
         console.log(e.target.value);
         setType(e.target.value);
     };
 
-    const signUpHandle = async (e) =>{
+    //realiza o cadastro no firebase 
+    const signUpHandle = async (e) => {
         e.preventDefault();
-        if(await SingUpFunction({email,password,name,type})){
-            ChangeScreen("/banco-de-ideias-cetificadora-3/LoginPage");
+        setErrorMessage('');
+        if (regexEmail.test(email) === true && password !== '') {
+            if (await SingUpFunction({ email, password, name, type })) {
+                changeScreen("/banco-de-ideias-cetificadora-3/LoginPage");
+            } else {
+                setErrorMessage("Erro ao fazer cadastro");
+            }
+            setEmail('');
+            setPassword('');
+            setName('');
+            setType('');
+        } else {
+            setErrorMessage("Email Invalido");
         }
-        setEmail('');
-        setPassword('');
-        setName('');
-        setType('');
     }
 
-    return(
+    return (
         <div className="sign-page">
             <h1>Bem-vinda</h1>
             <h2>Crie sua conta!</h2>
-            <FormSign setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName} setUserType={setUserType} signUpHandle={signUpHandle}/>
+            <FormSign setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName} setUserType={setUserType} signUpHandle={signUpHandle} />
+            <div>
+                <h3 className="error-message">{errorMessage}</h3>
+            </div>
             <div>
                 <Link to="/banco-de-ideias-cetificadora-3/LoginPage" className="login-account">Já tenho uma conta</Link>
             </div>
@@ -59,16 +75,17 @@ const SignPage = () =>{
     )
 }
 
-function FormSign({setUserEmail,setUserPassword,setUserName,setUserType,signUpHandle}){
-    return(
+//formulario de cadastro
+function FormSign({ setUserEmail, setUserPassword, setUserName, setUserType, signUpHandle }) {
+    return (
         <form className="sign-form">
-            <InputField className="input-field" label="Email" type="email" onChange={setUserEmail}/>
-            <InputField className="input-field" label="Senha" type="password" onChange={setUserPassword}/>
-            <InputField className="input-field" label="Nome" type="text" onChange={setUserName}/>
-            <InputField className="input-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType}/>
-            <InputField className="input-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType}/>
-            <InputField className="input-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType}/>
-            <Button className="default-button" onClick={signUpHandle} text="Cadastrar"/>
+            <InputField className="input-field" label="Email" type="email" onChange={setUserEmail} />
+            <InputField className="input-field" label="Senha" type="password" onChange={setUserPassword} />
+            <InputField className="input-field" label="Nome" type="text" onChange={setUserName} />
+            <InputField className="input-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType} />
+            <InputField className="input-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType} />
+            <InputField className="input-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType} />
+            <Button className="default-button" onClick={signUpHandle} text="Cadastrar" />
         </form>
     )
 }
