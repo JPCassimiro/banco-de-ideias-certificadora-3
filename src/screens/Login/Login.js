@@ -4,7 +4,7 @@ import '../Login/Login.css' // Arquivo CSS para estilização
 import { LoginFunction } from '../../utils/FirebaseFunctions';
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Componente principal da página de login
 const LoginPage = () => {
@@ -40,23 +40,25 @@ const LoginPage = () => {
     }
   }
 
-
-
   return (
     <div className="login-page">
-      <h1>Bem-vindo</h1>
+      <h1>Bem-vinda</h1>
+      <h2>Entre com sua conta!</h2>
       <LoginForm setUserEmail={setUserEmail} setUserPassword={setUserPassword} loginHandle={loginHandle} />
+      <div>
+       <Link to="/banco-de-ideias-cetificadora-3/SignPage" className="create-account">Criar conta</Link>
+      </div>
     </div>
   );
 }
 
 // Componente de formulário de login
-function LoginForm({ setUserEmail, setUserPassword, loginHandle }) {
+function LoginForm({ setUserEmail, setUserPassword, loginHandle, goToSignScreen }) {
   return (
     <form className="login-form">
-      <InputField label="Usuário" type="email" onChange={setUserEmail} />
-      <InputField label="Senha" type="password" onChange={setUserPassword} />
-      <Button text="Entrar" onClick={loginHandle} />
+      <InputField className="input-field" label="Email" type="email" onChange={setUserEmail} />
+      <InputField className="input-field" label="Senha" type="password" onChange={setUserPassword} />
+      <Button className="default-button" text="Entrar" onClick={loginHandle} />
     </form>
   );
 }

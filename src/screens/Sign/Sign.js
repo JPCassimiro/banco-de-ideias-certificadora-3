@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { SingUpFunction } from "../../utils/FirebaseFunctions";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "../Sign/Sign.css"
 
 
 const SignPage = () =>{
@@ -48,23 +49,26 @@ const SignPage = () =>{
 
     return(
         <div className="sign-page">
-            <h1>Bem vindo</h1>
+            <h1>Bem-vinda</h1>
+            <h2>Crie sua conta!</h2>
             <FormSign setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName} setUserType={setUserType} signUpHandle={signUpHandle}/>
-            <Button text={"Ja tenho conta"} onClick={()=>{ChangeScreen("/banco-de-ideias-cetificadora-3/LoginPage")}}/>
+            <div>
+                <Link to="/banco-de-ideias-cetificadora-3/LoginPage" className="login-account">Já tenho uma conta</Link>
+            </div>
         </div>
     )
 }
 
 function FormSign({setUserEmail,setUserPassword,setUserName,setUserType,signUpHandle}){
     return(
-        <form>
+        <form className="sign-form">
             <InputField className="input-field" label="Email" type="email" onChange={setUserEmail}/>
             <InputField className="input-field" label="Senha" type="password" onChange={setUserPassword}/>
             <InputField className="input-field" label="Nome" type="text" onChange={setUserName}/>
             <InputField className="input-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType}/>
             <InputField className="input-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType}/>
             <InputField className="input-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType}/>
-            <Button onClick={signUpHandle} text="Cadastrar!"/>
+            <Button className="default-button" onClick={signUpHandle} text="Cadastrar"/>
         </form>
     )
 }
