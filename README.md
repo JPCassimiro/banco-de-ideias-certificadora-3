@@ -2,9 +2,9 @@ Esse é o repositório do projeto para a matéria certificadora de competências
 
 ## Membros
 <ul>
+<li>Adilson Jr</li>
 <li>João Pedro Silva Cassimiro</li>
 <li>Rômulo Oliveira Souza</li>
-<li>Adilson Jr</li>
 </ul>
 
 ## Uso
