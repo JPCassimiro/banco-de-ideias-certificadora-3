@@ -26,7 +26,7 @@ Caso queira utilizar o projeto localmente siga os passos abaixo:
     
 [Node.js](https://nodejs.org/en)
 
-## Biblitecas Utilizadas(até o momento)
+## Bibliotecas Utilizadas(até o momento)
 
     1. React(puro, sem Next.js)
     2. Firebase
