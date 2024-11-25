@@ -9,7 +9,7 @@ const ProfilePage = () => {
     let navigate = useNavigate();
     const [name, setName] = useState('');
     const [type, setType] = useState('');
-    const [superType, setSuperType] = useState();
+    const [superType, setSuperType] = useState('');
     const user = auth.currentUser;
     let userData;
 
@@ -24,8 +24,9 @@ const ProfilePage = () => {
             userData = docSnap.data();
             setName(userData.Name);
             setType(userData.Type);
+            console.log(userData);
             if (userData.SuperType) {
-                setSuperType(userData.superType)
+                setSuperType(userData.SuperType)
             }
         }
         getCurrentUserData();
@@ -45,6 +46,7 @@ const ProfilePage = () => {
                 Perfil de usuario
             </h1>
             <h3>{name} você é um {type}</h3>
+            {superType ? <h3>Você também é um {superType}</h3> :<div></div> }
             <Button className="default-button" text={"Ir para Ideias"} onClick={() => { changeScreen(`/banco-de-ideias-cetificadora-3/IdeasPage`) }} />
         </div>
     )
