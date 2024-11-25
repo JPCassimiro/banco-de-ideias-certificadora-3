@@ -48,7 +48,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
-      <h1>Bem-vinda</h1>
+      <h1>Bem-vindo(a)</h1>
       <h2>Entre com sua conta!</h2>
       <LoginForm email={email} password={password} setUserEmail={setUserEmail} setUserPassword={setUserPassword} loginHandle={loginHandle} />
       <div>

@@ -63,7 +63,7 @@ const SignPage = () => {
 
     return (
         <div className="sign-page">
-            <h1>Bem-vinda</h1>
+            <h1>Bem-vindo(a)</h1>
             <h2>Crie sua conta!</h2>
             <FormSign email={email} password={password} name={name} setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName} setUserType={setUserType} signUpHandle={signUpHandle} />
             <div>
@@ -83,9 +83,9 @@ function FormSign({ setUserEmail, setUserPassword, setUserName, setUserType, sig
             <InputField value={email} className="input-field" label="Email" type="email" onChange={setUserEmail} />
             <InputField value={password}className="input-field" label="Senha" type="password" onChange={setUserPassword} />
             <InputField value={name}className="input-field" label="Nome" type="text" onChange={setUserName} />
-            <InputField className="input-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType} />
-            <InputField className="input-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType} />
-            <InputField className="input-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType} />
+            <InputField className="radio-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType} />
+            <InputField className="radio-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType} />
+            <InputField className="radio-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType} />
             <Button className="default-button" onClick={signUpHandle} text="Cadastrar" />
         </form>
     )
