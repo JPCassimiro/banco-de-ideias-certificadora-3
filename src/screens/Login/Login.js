@@ -42,6 +42,7 @@ const LoginPage = () => {
       setPassword('');
     } else {
       setErrorMessage("Email Invalido");
+      setPassword('');
     }
   }
 
@@ -49,7 +50,7 @@ const LoginPage = () => {
     <div className="login-page">
       <h1>Bem-vinda</h1>
       <h2>Entre com sua conta!</h2>
-      <LoginForm setUserEmail={setUserEmail} setUserPassword={setUserPassword} loginHandle={loginHandle} />
+      <LoginForm email={email} password={password} setUserEmail={setUserEmail} setUserPassword={setUserPassword} loginHandle={loginHandle} />
       <div>
         <h3 className="error-message">{errorMessage}</h3>
       </div>
@@ -61,11 +62,11 @@ const LoginPage = () => {
 }
 
 //formulário de login
-function LoginForm({ setUserEmail, setUserPassword, loginHandle }) {
+function LoginForm({ setUserEmail, setUserPassword, loginHandle, email, password }) {
   return (
     <form className="login-form">
-      <InputField className="input-field" label="Email" type="email" onChange={setUserEmail} />
-      <InputField className="input-field" label="Senha" type="password" onChange={setUserPassword} />
+      <InputField value={email} className="input-field" label="Email" type="email" onChange={setUserEmail} />
+      <InputField value={password} className="input-field" label="Senha" type="password" onChange={setUserPassword} />
       <Button className="default-button" text="Entrar" onClick={loginHandle} />
     </form>
   );

@@ -57,6 +57,7 @@ const SignPage = () => {
             setType('');
         } else {
             setErrorMessage("Email Invalido");
+            setPassword('');
         }
     }
 
@@ -64,7 +65,7 @@ const SignPage = () => {
         <div className="sign-page">
             <h1>Bem-vinda</h1>
             <h2>Crie sua conta!</h2>
-            <FormSign setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName} setUserType={setUserType} signUpHandle={signUpHandle} />
+            <FormSign email={email} password={password} name={name} setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName} setUserType={setUserType} signUpHandle={signUpHandle} />
             <div>
                 <h3 className="error-message">{errorMessage}</h3>
             </div>
@@ -76,12 +77,12 @@ const SignPage = () => {
 }
 
 //formulario de cadastro
-function FormSign({ setUserEmail, setUserPassword, setUserName, setUserType, signUpHandle }) {
+function FormSign({ setUserEmail, setUserPassword, setUserName, setUserType, signUpHandle, email, password, name }) {
     return (
         <form className="sign-form">
-            <InputField className="input-field" label="Email" type="email" onChange={setUserEmail} />
-            <InputField className="input-field" label="Senha" type="password" onChange={setUserPassword} />
-            <InputField className="input-field" label="Nome" type="text" onChange={setUserName} />
+            <InputField value={email} className="input-field" label="Email" type="email" onChange={setUserEmail} />
+            <InputField value={password}className="input-field" label="Senha" type="password" onChange={setUserPassword} />
+            <InputField value={name}className="input-field" label="Nome" type="text" onChange={setUserName} />
             <InputField className="input-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType} />
             <InputField className="input-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType} />
             <InputField className="input-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType} />
