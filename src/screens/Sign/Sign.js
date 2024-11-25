@@ -83,7 +83,7 @@ function FormSign({ setUserEmail, setUserPassword, setUserName, setUserType, sig
             <InputField value={email} className="input-field" label="Email" type="email" onChange={setUserEmail} />
             <InputField value={password}className="input-field" label="Senha" type="password" onChange={setUserPassword} />
             <InputField value={name}className="input-field" label="Nome" type="text" onChange={setUserName} />
-            <InputField className="radio-field" name="radioButton" label="Sou estudante da UTFPR" type="radio" value="student" onChange={setUserType} />
+            <InputField className="radio-field" name="radioButton" label="Sou discente/docente da UTFPR" type="radio" value="internal" onChange={setUserType} />
             <InputField className="radio-field" name="radioButton" label="Sou integrante do projeto de extensão" type="radio" value="member" onChange={setUserType} />
             <InputField className="radio-field" name="radioButton" label="Sou membro externo afetada pelo projeto" type="radio" value="external" onChange={setUserType} />
             <Button className="default-button" onClick={signUpHandle} text="Cadastrar" />

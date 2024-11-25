@@ -1,9 +1,6 @@
 Este é o repositório do projeto final da matéria certificadora de competências 3, da engenharia de computação do campus Cornélio Procópio da UTFPR. Nele temos um banco de ideias para uso no projeto de extensão [Meninas Digitais™](https://meninas.sbc.org.br).</br>
 Este projeto ainda está em progresso e não foi finalizado.
 
-## Conteúdos
-
-- [Conteúdos](#conteúdos)
 - [Membros](#membros)
 - [Objetivo](#objetivo)
 - [Uso](#uso)
@@ -20,10 +17,10 @@ Este projeto ainda está em progresso e não foi finalizado.
 </ul>
 
 ## Objetivo
-
-Esse projeto foi criado com o intuito de ser um banco de ideias acessivel para a comunidade interna(alunos, memebros do projeto de extensão, professores) e externa(membros da comunidade afetados pelo projeto).</br>
-Esse é um espaço onde individuos podem postar ideias de como o projeto pode ser melhorado ou mudado, e outros membros podem opniar se concordam ou discordam da ideia.</br>
-É necessario criar uma conta e fazer login para poder acessar o projeto.</br>
+</br>
+Esse projeto foi criado com o intuito de ser um banco de ideias acessível para a comunidade interna(alunos, membros do projeto de extensão, professores) e externa(membros da comunidade afetados pelo projeto).</br>
+Esse é um espaço onde indivíduos podem postar ideias de como o projeto pode ser melhorado ou mudado, e outros membros podem opinar se concordam ou discordam da ideia.</br>
+É necessário criar uma conta e fazer login para poder acessar o projeto.</br>
 
 ## Uso
 
@@ -46,7 +43,7 @@ Caso queira utilizar o projeto localmente siga os passos abaixo:
 <li>Na pasta do projeto execute o comando "npm run start".</li>
 </ol>
     
-[Node.js](https://nodejs.org/en)
+[Node.js](https://nodejs.org/en/download/prebuilt-installer)
 
 ## Bibliotecas Utilizadas(até o momento)
 
