@@ -24,7 +24,7 @@ Esse é um espaço onde indivíduos podem postar ideias de como o projeto pode s
 
 ## Uso
 
-O projeto se encontra hospedado no Github, através do recurso Pages, disponivel no link: [https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/](https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/)</br>
+O projeto se encontra hospedado no Github, através do recurso Pages, disponivel no link: [https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/](https://jpcassimiro.github.io/banco-de-ideias-certificadora-3/)</br>
 É necessario criar uma conta para acessar o projeto.</br>
 Atualmente, as funções implementadas são:</br>
 
