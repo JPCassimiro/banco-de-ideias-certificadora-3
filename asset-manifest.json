@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/banco-de-ideias-cetificadora-3/static/css/main.2884d023.css",
-    "main.js": "/banco-de-ideias-cetificadora-3/static/js/main.af6286ad.js",
-    "static/js/453.c52c423c.chunk.js": "/banco-de-ideias-cetificadora-3/static/js/453.c52c423c.chunk.js",
-    "index.html": "/banco-de-ideias-cetificadora-3/index.html",
-    "main.2884d023.css.map": "/banco-de-ideias-cetificadora-3/static/css/main.2884d023.css.map",
-    "main.af6286ad.js.map": "/banco-de-ideias-cetificadora-3/static/js/main.af6286ad.js.map",
-    "453.c52c423c.chunk.js.map": "/banco-de-ideias-cetificadora-3/static/js/453.c52c423c.chunk.js.map"
+    "main.css": "/banco-de-ideias-certificadora-3/static/css/main.2884d023.css",
+    "main.js": "/banco-de-ideias-certificadora-3/static/js/main.4e3970fd.js",
+    "static/js/453.30a59cf9.chunk.js": "/banco-de-ideias-certificadora-3/static/js/453.30a59cf9.chunk.js",
+    "index.html": "/banco-de-ideias-certificadora-3/index.html",
+    "main.2884d023.css.map": "/banco-de-ideias-certificadora-3/static/css/main.2884d023.css.map",
+    "main.4e3970fd.js.map": "/banco-de-ideias-certificadora-3/static/js/main.4e3970fd.js.map",
+    "453.30a59cf9.chunk.js.map": "/banco-de-ideias-certificadora-3/static/js/453.30a59cf9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2884d023.css",
-    "static/js/main.af6286ad.js"
+    "static/js/main.4e3970fd.js"
   ]
 }
