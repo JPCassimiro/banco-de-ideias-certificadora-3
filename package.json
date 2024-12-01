@@ -1,7 +1,7 @@
 {
-  "name": "banco-de-ideias-cetificadora-3",
+  "name": "banco-de-ideias-certificadora-3",
   "version": "0.1.0",
-  "homepage": "https://jpcassimiro.github.io/banco-de-ideias-cetificadora-3/",
+  "homepage": "https://jpcassimiro.github.io/banco-de-ideias-certificadora-3/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

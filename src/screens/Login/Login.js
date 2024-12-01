@@ -34,7 +34,7 @@ const LoginPage = () => {
     if (regexEmail.test(email) === true && password !== '') {
       let controlVariable = await LoginFunction({ email, password });
       if (controlVariable) {
-        changeScreen(`/banco-de-ideias-cetificadora-3/IdeasPage/`);
+        changeScreen(`/banco-de-ideias-certificadora-3/IdeasPage/`);
       } else {
         setErrorMessage("Cadastro não encontrado, verifique o Email ou senha");
       }
@@ -55,7 +55,7 @@ const LoginPage = () => {
         <h3 className="error-message">{errorMessage}</h3>
       </div>
       <div>
-        <Link to="/banco-de-ideias-cetificadora-3/SignPage" className="create-account">Criar conta</Link>
+        <Link to="/banco-de-ideias-certificadora-3/SignPage" className="create-account">Criar conta</Link>
       </div>
     </div>
   );

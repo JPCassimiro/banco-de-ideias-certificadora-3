@@ -47,7 +47,7 @@ const SignPage = () => {
         setErrorMessage('');
         if (regexEmail.test(email) === true && password !== '') {
             if (await SingUpFunction({ email, password, name, type })) {
-                changeScreen("/banco-de-ideias-cetificadora-3/LoginPage");
+                changeScreen("/banco-de-ideias-certificadora-3/LoginPage");
             } else {
                 setErrorMessage("Erro ao fazer cadastro");
             }
@@ -70,7 +70,7 @@ const SignPage = () => {
                 <h3 className="error-message">{errorMessage}</h3>
             </div>
             <div>
-                <Link to="/banco-de-ideias-cetificadora-3/LoginPage" className="login-account">Já tenho uma conta</Link>
+                <Link to="/banco-de-ideias-certificadora-3/LoginPage" className="login-account">Já tenho uma conta</Link>
             </div>
         </div>
     )

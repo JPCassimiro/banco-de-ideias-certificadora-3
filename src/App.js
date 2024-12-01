@@ -11,11 +11,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/banco-de-ideias-cetificadora-3/" index element={<Homepage />} />
-        <Route path="/banco-de-ideias-cetificadora-3/SignPage" element={<SignPage />} />
-        <Route path="/banco-de-ideias-cetificadora-3/LoginPage" element={<LoginPage />} />
-        <Route path="/banco-de-ideias-cetificadora-3/IdeasPage" element={<IdeasPage />} />
-        <Route path="/banco-de-ideias-cetificadora-3/ProfilePage" element={<ProfilePage />} />
+        <Route path="/banco-de-ideias-certificadora-3/" index element={<Homepage />} />
+        <Route path="/banco-de-ideias-certificadora-3/SignPage" element={<SignPage />} />
+        <Route path="/banco-de-ideias-certificadora-3/LoginPage" element={<LoginPage />} />
+        <Route path="/banco-de-ideias-certificadora-3/IdeasPage" element={<IdeasPage />} />
+        <Route path="/banco-de-ideias-certificadora-3/ProfilePage" element={<ProfilePage />} />
         <Route path="*" element={<Homepage />} />
       </Routes>
     </BrowserRouter>

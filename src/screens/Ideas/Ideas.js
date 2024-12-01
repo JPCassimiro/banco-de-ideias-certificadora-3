@@ -14,7 +14,7 @@ const IdeasPage = (props) => {
     if (!user) {
         return (
             <div>
-                {window.onload = () => { changeScreen("/banco-de-ideias-cetificadora-3/") }}
+                {window.onload = () => { changeScreen("/banco-de-ideias-certificadora-3/") }}
             </div>
         )
     }
@@ -24,7 +24,7 @@ const IdeasPage = (props) => {
             <h1>
                 Ideias
             </h1>
-            <Button className="default-button" text={"Ir para Perfil"} onClick={() => { changeScreen(`/banco-de-ideias-cetificadora-3/ProfilePage`) }} />
+            <Button className="default-button" text={"Ir para Perfil"} onClick={() => { changeScreen(`/banco-de-ideias-certificadora-3/ProfilePage`) }} />
         </div>
     )
 }

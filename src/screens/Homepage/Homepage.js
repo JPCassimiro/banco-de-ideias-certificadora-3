@@ -12,13 +12,13 @@ const Homepage = () =>{
                     Este é o banco de ideias do projeto de extensão meninas digitais da UTFPR de Cornélio Procópio. 
                 </p>
                 <p>
-                    Para mais informações acesse o <a href="https://github.com/JPCassimiro/banco-de-ideias-cetificadora-3">repositório no github</a>. 
+                    Para mais informações acesse o <a href="https://github.com/JPCassimiro/banco-de-ideias-certificadora-3">repositório no github</a>. 
                 </p>
                 <p>
                     Projeto em progresso.
                 </p>
-                <Link to="/banco-de-ideias-cetificadora-3/SignPage" className="create-account">Criar conta</Link>
-                <Link to="/banco-de-ideias-cetificadora-3/LoginPage" className="login-account">Já tenho uma conta</Link>
+                <Link to="/banco-de-ideias-certificadora-3/SignPage" className="create-account">Criar conta</Link>
+                <Link to="/banco-de-ideias-certificadora-3/LoginPage" className="login-account">Já tenho uma conta</Link>
             </div>
         </div>
     )
