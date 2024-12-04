@@ -24,7 +24,7 @@ const ProfilePage = () => {
             userData = docSnap.data();
             setName(userData.Name);
             setType(userData.Type);
-            console.log(userData);
+            //console.log(userData);
             if (userData.SuperType) {
                 setSuperType(userData.SuperType)
             }

@@ -37,7 +37,7 @@ const SignPage = () => {
 
     //chamada ao alterar o tipo 
     const setUserType = (e) => {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         setType(e.target.value);
     };
 
