@@ -12,6 +12,7 @@ const RecoverPage = () => {
   const regexEmail = /^[A-Za-z0-9.+_-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$/;//checa email valido
   let navigate = useNavigate();
 
+  //função de mudança de tela
   const changeScreen = (path) => {
     navigate(path);
   }
@@ -28,13 +29,13 @@ const RecoverPage = () => {
     if (regexEmail.test(email) === true) {
       let controlVariable = await RecoverFunction({ email });
       if (controlVariable) {
-        changeScreen(`/banco-de-ideias-certificadora-3/LoginPage/`);
+        changeScreen("/banco-de-ideias-certificadora-3/LoginPage");
       } else {
-        setErrorMessage("Cadastro não encontrado, verifique o Email");
+        setErrorMessage("Cadastro não encontrado, verifique o Email.");
       }
       setEmail('');
     } else {
-      setErrorMessage("Email Invalido");
+      setErrorMessage("Email Invalido.");
     }
   }
 

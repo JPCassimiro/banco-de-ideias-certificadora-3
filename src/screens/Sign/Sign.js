@@ -11,11 +11,13 @@ const SignPage = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [type, setType] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    let navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');//mensagem de erro caso email errado / não encontrado
     const regexEmail = /^[A-Za-z0-9.+_-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$/;//checa email valido
+    const regexName = /^[A-Za-z]+$/;//checa se nome só contem letras
 
+    let navigate = useNavigate();
 
+    //função de troca de tela
     const changeScreen = (path) => {
         navigate(path);
     }
@@ -45,18 +47,25 @@ const SignPage = () => {
     const signUpHandle = async (e) => {
         e.preventDefault();
         setErrorMessage('');
-        if (regexEmail.test(email) === true && password !== '') {
+        if (regexEmail.test(email) === true && password !== '' && name !== '' && regexName.test(name) && type !== '') {
             if (await SingUpFunction({ email, password, name, type })) {
                 changeScreen("/banco-de-ideias-certificadora-3/LoginPage");
             } else {
-                setErrorMessage("Erro ao fazer cadastro");
+                setErrorMessage("Erro ao fazer cadastro.");
             }
             setEmail('');
             setPassword('');
             setName('');
             setType('');
         } else {
-            setErrorMessage("Email Invalido");
+            if(email === '' || password === '' || type === ''){
+                setErrorMessage("Preencha todos os campos.");
+            }
+            else if(!regexEmail.test(email)){
+                setErrorMessage("Email Invalido.");
+            }else if(!regexName.test(name)){
+                setErrorMessage("use apenas letras no nome.");
+            }
             setPassword('');
         }
     }
@@ -70,7 +79,7 @@ const SignPage = () => {
                 <h3 className="error-message">{errorMessage}</h3>
             </div>
             <div>
-                <Link to="/banco-de-ideias-certificadora-3/LoginPage" className="login-account">Já tenho uma conta</Link>
+                <Link to="/banco-de-ideias-certificadora-3/LoginPage" className="link-text">Já tenho uma conta.</Link>
             </div>
         </div>
     )

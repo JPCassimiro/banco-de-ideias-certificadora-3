@@ -3,7 +3,7 @@ import LoginPage from './screens/Login/Login';
 import SignPage from './screens/Sign/Sign';
 import IdeasPage from './screens/Ideas/Ideas';
 import Homepage from './screens/Homepage/Homepage';
-import { ProfilePage } from './screens/Profile/Profile';
+import ProfilePage from './screens/Profile/Profile';
 import RecoverPage from './screens/Recover/Recover';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 

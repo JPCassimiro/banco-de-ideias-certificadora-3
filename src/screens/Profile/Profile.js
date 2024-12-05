@@ -47,11 +47,9 @@ const ProfilePage = () => {
             </h1>
             <h3>{name} você é um {type}</h3>
             {superType ? <h3>Você também é um {superType}</h3> :<div></div> }
-            <Button className="default-button" text={"Ir para Ideias"} onClick={() => { changeScreen(`/banco-de-ideias-certificadora-3/IdeasPage`) }} />
+            <Button className="default-button" text={"Ir para Ideias"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/IdeasPage") }} />
         </div>
     )
 }
 
-export {
-    ProfilePage
-}
+export default ProfilePage

@@ -34,14 +34,18 @@ const LoginPage = () => {
     if (regexEmail.test(email) === true && password !== '') {
       let controlVariable = await LoginFunction({ email, password });
       if (controlVariable) {
-        changeScreen(`/banco-de-ideias-certificadora-3/IdeasPage/`);
+        changeScreen("/banco-de-ideias-certificadora-3/IdeasPage");
       } else {
-        setErrorMessage("Cadastro não encontrado, verifique o Email ou senha");
+        setErrorMessage("Cadastro não encontrado, verifique o Email ou senha.");
       }
       setEmail('');
       setPassword('');
     } else {
-      setErrorMessage("Email Invalido");
+      if(email === '' || password === ''){
+        setErrorMessage("Preencha todos os campos.");
+      }else{
+        setErrorMessage("Email Invalido.");
+      }
       setPassword('');
     }
   }
@@ -55,10 +59,10 @@ const LoginPage = () => {
         <h3 className="error-message">{errorMessage}</h3>
       </div>
       <div>
-        <Link to="/banco-de-ideias-certificadora-3/SignPage" className="link-text">Criar conta</Link>
+        <Link to="/banco-de-ideias-certificadora-3/SignPage" className="link-text">Criar conta.</Link>
       </div>
       <div>
-        <Link to="/banco-de-ideias-certificadora-3/RecoverPage" className="link-text">Recuperar senha</Link>
+        <Link to="/banco-de-ideias-certificadora-3/RecoverPage" className="link-text">Recuperar senha.</Link>
       </div>
     </div>
   );
