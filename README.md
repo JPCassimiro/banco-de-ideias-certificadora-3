@@ -17,6 +17,7 @@ Este projeto ainda está em progresso e não foi finalizado.
 </ul>
 
 ## Objetivo
+
 </br>
 Esse projeto foi criado com o intuito de ser um banco de ideias acessível para a comunidade interna(alunos, membros do projeto de extensão, professores) e externa(membros da comunidade afetados pelo projeto).</br>
 Esse é um espaço onde indivíduos podem postar ideias de como o projeto pode ser melhorado ou mudado, e outros membros podem opinar se concordam ou discordam da ideia.</br>
@@ -24,12 +25,18 @@ Esse é um espaço onde indivíduos podem postar ideias de como o projeto pode s
 
 ## Uso
 
-O projeto se encontra hospedado no Github, através do recurso Pages, disponivel no link: [https://jpcassimiro.github.io/banco-de-ideias-certificadora-3/](https://jpcassimiro.github.io/banco-de-ideias-certificadora-3//)</br>
+O projeto se encontra hospedado e funcional no Github, através do recurso Pages, disponivel no link: [https://jpcassimiro.github.io/banco-de-ideias-certificadora-3/](https://jpcassimiro.github.io/banco-de-ideias-certificadora-3/)</br>
 É necessario criar uma conta para acessar o projeto.</br>
-Atualmente, as funções implementadas são:</br>
+Atualmente, as telas prontas são:</br>
 
-    Cadastro de usúarios;
-    Login de usúarios.
+    Cadastro;
+    Login;
+    Recuperação de senha.
+
+Imagens do projeto em execução:
+
+![image](./rmImgs/sign.png)
+![image](./rmImgs/login.png)
 
 ## Instalação
 
