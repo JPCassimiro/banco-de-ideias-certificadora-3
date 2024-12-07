@@ -27,11 +27,11 @@ const RecoverFunction = async (props) => {
   let controlVariable;
   await sendPasswordResetEmail(auth, props.email)
     .then(doc => {
-      console.log('Email enviado: ' + JSON.stringify(doc.user));
+      console.log('Email enviado: ' + JSON.stringify(doc));
       controlVariable = true;
     })
     .catch((e => {
-      console.log('Erro ao enviar email: ' + JSON.stringify(e.code));
+      console.log('Erro ao enviar email: ' + JSON.stringify(e));
       controlVariable = false;
     }))
   return controlVariable;
