@@ -30,9 +30,9 @@ O projeto se encontra hospedado e funcional no Github, através do recurso Pages
 É necessário criar uma conta para acessar o projeto.</br>
 Atualmente, as telas prontas são:</br>
 
-    Cadastro;
-    Login;
-    Recuperação de senha.
+    Cadastro;
+    Login;
+    Recuperação de senha.
 
 Imagens do projeto em execução:
 
@@ -58,7 +58,7 @@ Vídeo de instalação: https://www.youtube.com/watch?v=q3kZ33pHpgM
 
 ## Bugs conhecidos
 
-Ao atualizar qualquer página que não seja a Homepage, o projeto apresenta um erro 404. Para continuar utilizando o projeto normalmente, volte à Homepage.</br>
+Este bug só ocorre no Github Pages. Ao atualizar qualquer página que não seja a Homepage, o projeto apresenta um erro 404. Para continuar utilizando o projeto normalmente, volte à Homepage.</br>
 
 
 ## Bibliotecas Utilizadas (até o momento)
