@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from './Button'
 import InputField from './InputField'
 import { addDataToUserCollection } from '../utils/FirebaseFunctions';
+import "./NewIdea.css"
 
 const ModalIdea = (props) => {
     const [show, setShow] = useState(false);
@@ -45,7 +46,7 @@ const ModalIdea = (props) => {
                 <Button className="default-button" text="Abrir" onClick={handleShow} />
             </div>
             <div>
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
                     <Modal.Header closeButton>
                         <Modal.Title>Nova sugestão</Modal.Title>
                     </Modal.Header>
@@ -62,9 +63,10 @@ function IdeaForm({ title, description, setIdeaTitle, setIdeaDescription, handle
     return (
         <div>
             <form className="idea-form">
-                <InputField value={title} className="input-field" label="Titulo" type="text" onChange={setIdeaTitle} />
+                <label htmlFor="ideaTitle">Título</label>
+                <InputField id="ideaTitle" value={title} className="input-field" type="text" onChange={setIdeaTitle} />
                 <label htmlFor="ideaDescription">Descrição</label>
-                <textarea id="ideaDescription" rows={7} cols={60} value={description} className="input-field" onChange={setIdeaDescription} />
+                <textarea id="ideaDescription" rows={7} cols={60} value={description} className="textArea" onChange={setIdeaDescription} />
                 <Button className="default-button" text="Enviar" onClick={handleSend} />
             </form>
         </div>

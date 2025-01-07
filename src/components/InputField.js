@@ -6,7 +6,7 @@ const InputField = (props) => {
     return (
       <div className={props.className}>
         <label>{props.label}</label>
-        <input value={props.value} name={props.name} type={props.type} onChange={props.onChange} required/>
+        <input id={props.id} value={props.value} name={props.name} type={props.type} onChange={props.onChange} required/>
       </div>
     );
 }
