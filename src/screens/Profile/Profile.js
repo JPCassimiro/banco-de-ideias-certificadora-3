@@ -7,10 +7,7 @@ import { collection, doc, getDoc } from 'firebase/firestore';
 
 const ProfilePage = () => {
     let navigate = useNavigate();
-    const [name, setName] = useState('');
-    const [type, setType] = useState('');
-    const [superType, setSuperType] = useState('');
-    const user = auth.currentUser;
+    const [user, setUser] = useState();
     let userData;
 
     const changeScreen = (path) => {
@@ -18,16 +15,14 @@ const ProfilePage = () => {
     }
 
     useEffect(() => {
+        if(!auth.currentUser.email){
+            changeScreen("/banco-de-ideias-certificadora-3/")
+        }
         async function getCurrentUserData() {
-            const docRef = doc(collection(db, "userCollectionList"), user.email);
+            const docRef = doc(collection(db, "userCollectionList"), auth.currentUser.email);
             const docSnap = await getDoc(docRef)
             userData = docSnap.data();
-            setName(userData.Name);
-            setType(userData.Type);
-            //console.log(userData);
-            if (userData.SuperType) {
-                setSuperType(userData.SuperType)
-            }
+            setUser(userData)
         }
         getCurrentUserData();
     }, [])
@@ -45,8 +40,8 @@ const ProfilePage = () => {
             <h1>
                 Perfil de usuario
             </h1>
-            <h3>{name} você é um {type}</h3>
-            {superType ? <h3>Você também é um {superType}</h3> :<div></div> }
+            <h3>{user.Name} você é um {user.Type}</h3>
+            {user.SuperType ? <h3>Você também é um {user.SuperType}</h3> :<div></div> }
             <Button className="default-button" text={"Ir para Ideias"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/IdeasPage") }} />
         </div>
     )

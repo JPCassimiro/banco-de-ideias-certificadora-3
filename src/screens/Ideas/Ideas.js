@@ -1,11 +1,17 @@
 import Button from "../../components/Button"
 import { useNavigate } from "react-router-dom"
 import { auth } from "../../config/Fb"
-import { logOut } from "../../utils/FirebaseFunctions"
+import { getAllIdeiasList, logOut } from "../../utils/FirebaseFunctions"
+import { useEffect, useState } from "react"
+import ModalIdea from "../../components/NewIdeaModal"
 
 const IdeasPage = (props) => {
+    const [user, setUser] = useState();
     let navigate = useNavigate();
-    const user = auth.currentUser;
+
+    useEffect(()=>{
+        setUser(auth.currentUser);
+    },[])
 
     const changeScreen = (path) => {
         navigate(path);
@@ -18,6 +24,10 @@ const IdeasPage = (props) => {
             console.log("logOutHandle sucesso");
             changeScreen("/banco-de-ideias-certificadora-3/LoginPage");
         }
+    }
+
+    const check = () => {
+        getAllIdeiasList();
     }
 
     if (!user) {
@@ -38,6 +48,12 @@ const IdeasPage = (props) => {
             </div>
             <div>
                 <Button className="default-button" text={"Logout"} onClick={() => { logOutHandle() }} />
+            </div>
+            <div>
+                <ModalIdea email={user.email}/>
+            </div>
+            <div>
+                <Button className="default-button" text={"check"} onClick={()=>{check()}}/>
             </div>
         </div>
     )

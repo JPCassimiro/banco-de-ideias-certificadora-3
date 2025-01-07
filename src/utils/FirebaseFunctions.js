@@ -1,7 +1,6 @@
 import { auth } from '../config/Fb';
 import { db } from '../config/Fb';
-import { signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
 import { addDoc, collection, onSnapshot, query, setDoc, doc, deleteDoc } from 'firebase/firestore';
 
 //coleção que armazena a lista de usuarios
@@ -54,9 +53,9 @@ const SingUpFunction = async (props) => {
 }
 
 //recebe email do usuario logado atualmente e um objeto com os dados da ideia
-const addDataToUserCollection = async (props) => {
-  const collectionUser = collection(db, props.email);
-  await addDoc(collectionUser, props.data)
+const addDataToUserCollection = async (email, data) => {
+  const collectionUser = collection(db, email);
+  await addDoc(collectionUser, data)
     .then((doc) => {
       //console.log("Entrada de dados na coleção do usuario no FB bem sucedida: " + JSON.stringify(doc));
     })
@@ -90,18 +89,37 @@ const addDataToListCollection = async (email, name, type) => {
 }
 
 //prototipo da função a ser utilizada na pagina de lista de ideias
-const getAllIdeiasList = async (props) => {
+const getAllIdeiasList = async () => {
   const queryUserList = query(collectionUserList);
   let userList = [];
+  let ideaList = [];
   const unsubscribe = onSnapshot(queryUserList, (snap) => {
     snap.forEach((doc) => {
-      userList.push({
-        id: doc.id
-      })
+      // userList.push({
+      //   id: doc.id
+      // })
+      let item = doc.id;
+      userList.push(item);
     })
   });
-  userList.forEach((user) => {
-
+  userList.forEach((item) => {
+    console.log("teste");
+    const queryUserIdeas = query(collection(db,item.id))
+    const unsubscribe = onSnapshot(queryUserIdeas, (snap)=>{
+      snap.forEach((doc)=>{
+        // ideaList.push({
+        //   title: doc.Title,
+        //   description: doc.Description,
+        //   date: doc.Date
+        // });
+        let item = {
+          title: doc.Title,
+          description: doc.Description,
+          data: doc.Date
+        }
+        ideaList.push(item)
+      });
+    });
   });
 }
 
@@ -138,5 +156,5 @@ export {
   deleteUserIdea,
   getAllIdeiasList,
   RecoverFunction,
-  logOut
+  logOut,
 }
