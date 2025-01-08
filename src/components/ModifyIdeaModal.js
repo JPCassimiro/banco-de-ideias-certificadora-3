@@ -1,11 +1,10 @@
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import Button from './Button'
-import InputField from './InputField'
-import { addDataToUserCollection } from '../utils/FirebaseFunctions';
-import "./Styles/NewIdea.css"
+import InputField from './InputField' 
+import "./Styles/ModifyIdeaModal.css"
 
-const ModalIdea = (props) => {
+const ModalModifyIdea = (props) => {
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -21,37 +20,18 @@ const ModalIdea = (props) => {
         setDescription(e.target.value);
     }
 
-    const handleSend = async (e) => {
-        e.preventDefault();
-        if (title !== '' && description !== '') {
-            const data = {
-                Title: title,
-                Description: description,
-                Agree: 0,
-                Disagree: 0,
-                Date: new Date()
-            }
-            await addDataToUserCollection(props.email, data)
-            setTitle('');
-            setDescription('');
-            handleClose();
-        } else {
-            console.log("Preencha todos os campos");
-        }
-    }
-
     return (
         <>
             <div>
-                <Button className="default-button" text="Abrir" onClick={handleShow} />
+                <Button className="default-button" text="Abrir Modificar ideia" onClick={handleShow} />
             </div>
             <div>
                 <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
                     <Modal.Header closeButton>
-                        <Modal.Title>Nova sugestão</Modal.Title>
+                        <Modal.Title>Alterar sugestão</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <IdeaForm title={title} description={description} setIdeaTitle={setIdeaTitle} setIdeaDescription={setIdeaDescription} handleSend={handleSend} />
+                        <IdeaForm title={title} description={description} setIdeaTitle={setIdeaTitle} setIdeaDescription={setIdeaDescription} />
                     </Modal.Body>
                 </Modal>
             </div>
@@ -59,7 +39,7 @@ const ModalIdea = (props) => {
     );
 }
 
-function IdeaForm({ title, description, setIdeaTitle, setIdeaDescription, handleSend }) {
+function IdeaForm({ title, description, setIdeaTitle, setIdeaDescription}) {
     return (
         <div>
             <form className="idea-form">
@@ -67,10 +47,10 @@ function IdeaForm({ title, description, setIdeaTitle, setIdeaDescription, handle
                 <InputField id="ideaTitle" value={title} className="input-field" type="text" onChange={setIdeaTitle} />
                 <label htmlFor="ideaDescription">Descrição</label>
                 <textarea id="ideaDescription" rows={7} cols={60} value={description} className="textArea" onChange={setIdeaDescription} />
-                <Button className="default-button" text="Enviar" onClick={handleSend} />
+                <Button className="default-button" text="Enviar" />
             </form>
         </div>
     );
 }
 
-export default ModalIdea;
+export default ModalModifyIdea;

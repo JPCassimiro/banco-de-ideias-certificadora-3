@@ -4,6 +4,7 @@ import { auth } from "../../config/Fb"
 import { getAllIdeiasList, logOut } from "../../utils/FirebaseFunctions"
 import { useEffect, useState } from "react"
 import ModalIdea from "../../components/NewIdeaModal"
+import ModalModifyIdea from "../../components/ModifyIdeaModal"
 
 const IdeasPage = (props) => {
     const [user, setUser] = useState();
@@ -51,6 +52,9 @@ const IdeasPage = (props) => {
             </div>
             <div>
                 <ModalIdea email={user.email}/>
+            </div>
+            <div>
+                <ModalModifyIdea />
             </div>
             <div>
                 <Button className="default-button" text={"check"} onClick={()=>{check()}}/>
