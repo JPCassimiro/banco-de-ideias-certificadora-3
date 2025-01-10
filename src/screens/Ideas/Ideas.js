@@ -15,6 +15,7 @@ const IdeasPage = (props) => {
     },[])
 
     const changeScreen = (path) => {
+        console.log("Navigating to:", path);
         navigate(path);
     }
 
@@ -55,6 +56,9 @@ const IdeasPage = (props) => {
             </div>
             <div>
                 <ModalModifyIdea />
+            </div>
+            <div>
+                <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/IdeaView") }} />
             </div>
             <div>
                 <Button className="default-button" text={"check"} onClick={()=>{check()}}/>
