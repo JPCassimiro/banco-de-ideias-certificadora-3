@@ -8,6 +8,9 @@
     padding: 10px;
 }
 
+.header {
+    margin-bottom: 40px;
+}
 .title { 
     font-size: 28px;
     color: #FFFFFF;
@@ -39,38 +42,8 @@
     color: white;
     font-size: 17px;
     text-align: justify;
-    margin-top: 20px;
-    margin-bottom: 10px;
     padding: 15px;
     width: 100%; 
-}
-
-.questionVote{
-    color: white;
-    font-size: 17px;
-}
-
-.buttonsContainer {
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    display: flex;  
-}
-
-.voteButton {
-    width: 15%;
-    padding: 2px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 20px;
-}
-
-.voteButton:hover {
-    background-color: #0056b3;
 }
 
 span {
@@ -80,6 +53,5 @@ span {
 .votesCount {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
 }
 

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import Button from "../../components/Button";
-import "../IdeaView/ideaView.css"
+import "../DetailedIdeaView/DetailedIdeaView.css"
 
-const IdeaView = () => {
+const DetailedIdeaView = () => {
     const [ideaTitle, setIdeaTitle] = useState("Teste Titulo");
     const [description, setDescription] = useState("Teste Descrição Teste Descrição Teste Descrição Teste Descrição Teste Descrição");
     const [agreeCount, setAgreeCount] = useState("5");
@@ -11,15 +10,11 @@ const IdeaView = () => {
     return (
         <main className="body">
             <div className="ideaContainer">
+                <h3 className="header">Visualização Detalhada da Sugestão</h3>
                 <h3 className="title"><strong>Título: </strong>{ideaTitle}</h3>
                 <div className="description">
                     <strong>Descrição: </strong>
                     <p>{description}</p>
-                </div>
-                <p className="questionVote">Você concorda com esta ideia?</p>
-                <div className="buttonsContainer">
-                    <Button className="voteButton" text="Sim" />
-                    <Button className="voteButton" text="Não" />
                 </div>
                 <div className="votesCount">
                     <span><strong>Concordam: </strong>{agreeCount}</span>
@@ -30,4 +25,4 @@ const IdeaView = () => {
     )
 }
 
-export default IdeaView;
+export default DetailedIdeaView;

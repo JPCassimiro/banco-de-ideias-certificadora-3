@@ -10,9 +10,9 @@ const IdeasPage = (props) => {
     const [user, setUser] = useState();
     let navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         setUser(auth.currentUser);
-    },[])
+    }, [])
 
     const changeScreen = (path) => {
         console.log("Navigating to:", path);
@@ -52,7 +52,7 @@ const IdeasPage = (props) => {
                 <Button className="default-button" text={"Logout"} onClick={() => { logOutHandle() }} />
             </div>
             <div>
-                <ModalIdea email={user.email}/>
+                <ModalIdea email={user.email} />
             </div>
             <div>
                 <ModalModifyIdea />
@@ -61,7 +61,10 @@ const IdeasPage = (props) => {
                 <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/IdeaView") }} />
             </div>
             <div>
-                <Button className="default-button" text={"check"} onClick={()=>{check()}}/>
+                <Button className="default-button" text={"Ir para Visualização Detalhada da Ideia"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/DetailedIdeaView") }} />
+            </div>
+            <div>
+                <Button className="default-button" text={"check"} onClick={() => { check() }} />
             </div>
         </div>
     )
