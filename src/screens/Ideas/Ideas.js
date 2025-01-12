@@ -5,13 +5,22 @@ import { getAllIdeiasList, logOut } from "../../utils/FirebaseFunctions"
 import { useEffect, useState } from "react"
 import ModalIdea from "../../components/NewIdeaModal"
 import ModalModifyIdea from "../../components/ModifyIdeaModal"
+import { onAuthStateChanged } from "firebase/auth"
 
 const IdeasPage = (props) => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(null);
+    const [ideasList, setIdeasList] = useState(null);
     let navigate = useNavigate();
 
     useEffect(() => {
-        setUser(auth.currentUser);
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+                updateList();
+            } else {
+                changeScreen("/banco-de-ideias-certificadora-3/LoginPage");
+            }
+        })
     }, [])
 
     const changeScreen = (path) => {
@@ -28,16 +37,15 @@ const IdeasPage = (props) => {
         }
     }
 
-    const check = () => {
-        getAllIdeiasList();
-    }
-
-    if (!user) {
-        return (
-            <div>
-                {window.onload = () => { changeScreen("/banco-de-ideias-certificadora-3/") }}
-            </div>
-        )
+    const updateList = async () => {
+        const ideas = await getAllIdeiasList();
+        setIdeasList(ideas.map(idea =>
+            <li key={idea.id}>
+                <h6>{idea.title}</h6>
+                <p>{idea.description}</p>
+                <p>{idea.date}</p>
+            </li>
+        ));
     }
 
     return (
@@ -51,9 +59,12 @@ const IdeasPage = (props) => {
             <div>
                 <Button className="default-button" text={"Logout"} onClick={() => { logOutHandle() }} />
             </div>
-            <div>
-                <ModalIdea email={user.email} />
-            </div>
+            {user && (
+                <div>
+                    <ModalIdea email={user.email} />
+                    <PlaceholderList ideasList={ideasList} />
+                </div>
+            )}
             <div>
                 <ModalModifyIdea />
             </div>
@@ -68,6 +79,14 @@ const IdeasPage = (props) => {
             </div>
         </div>
     )
+}
+
+function PlaceholderList({ ideasList }) {
+    if (ideasList !== null) {
+        return <ul>{ideasList}</ul>;
+    } else {
+        return (<div></div>);
+    }
 }
 
 export default IdeasPage

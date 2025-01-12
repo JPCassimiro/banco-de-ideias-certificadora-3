@@ -1,7 +1,7 @@
 import { auth } from '../config/Fb';
 import { db } from '../config/Fb';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
-import { addDoc, collection, onSnapshot, query, setDoc, doc, deleteDoc } from 'firebase/firestore';
+import { addDoc, collection, query, setDoc, doc, deleteDoc, getDocs } from 'firebase/firestore';
 
 //coleção que armazena a lista de usuarios
 const collectionUserList = collection(db, "userCollectionList");
@@ -93,40 +93,29 @@ const getAllIdeiasList = async () => {
   const queryUserList = query(collectionUserList);
   let userList = [];
   let ideaList = [];
-  const unsubscribe = onSnapshot(queryUserList, (snap) => {
-    snap.forEach((doc) => {
-      // userList.push({
-      //   id: doc.id
-      // })
-      let item = doc.id;
-      userList.push(item);
-    })
+  const userSnapshot = await getDocs(queryUserList);
+  userSnapshot.forEach((doc)=>{
+    userList.push(doc.id);
   });
-  userList.forEach((item) => {
-    console.log("teste");
-    const queryUserIdeas = query(collection(db,item.id))
-    const unsubscribe = onSnapshot(queryUserIdeas, (snap)=>{
-      snap.forEach((doc)=>{
-        // ideaList.push({
-        //   title: doc.Title,
-        //   description: doc.Description,
-        //   date: doc.Date
-        // });
-        let item = {
-          title: doc.Title,
-          description: doc.Description,
-          data: doc.Date
-        }
-        ideaList.push(item)
+  for (const userId of userList){
+    const queryUserIdeas = query(collection(db,userId))
+    const userIdeaSnapshot = await getDocs(queryUserIdeas);
+    userIdeaSnapshot.forEach((doc)=>{
+      ideaList.push({
+        title: doc.data().Title,
+        description: doc.data().Description,
+        date: doc.data().Date.toDate().toLocaleString(),
+        id: doc.id
       });
     });
-  });
+  }
+  return ideaList;
 }
 
 //associar o id da ideia com a flatlist
-const deleteUserIdea = async (props) => {
-  const collectionUser = collection(db, props.email);
-  await deleteDoc(collectionUser, props.ideaId)
+const deleteUserIdea = async (email, ideaId) => {
+  const collectionUser = collection(db, email);
+  await deleteDoc(collectionUser, ideaId)
     .then((doc) => {
       //console.log(`Ideia com id ${props.ideaId} de usuario ${props.email} foi removida: ` + JSON.stringify(doc))
     })
@@ -139,7 +128,7 @@ const logOut = async () => {
   let controlVariable;
   await signOut(auth)
     .then((doc) => {
-      console.log("logOut sucesso");
+      // console.log("logOut sucesso");
       controlVariable = true;
     })
     .catch((e) => {
@@ -147,6 +136,7 @@ const logOut = async () => {
     })
   return controlVariable;
 }
+
 
 export {
   LoginFunction,
