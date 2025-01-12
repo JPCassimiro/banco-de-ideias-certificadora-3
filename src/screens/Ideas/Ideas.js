@@ -74,9 +74,6 @@ const IdeasPage = (props) => {
             <div>
                 <Button className="default-button" text={"Ir para Visualização Detalhada da Ideia"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/DetailedIdeaView") }} />
             </div>
-            <div>
-                <Button className="default-button" text={"check"} onClick={() => { check() }} />
-            </div>
         </div>
     )
 }
