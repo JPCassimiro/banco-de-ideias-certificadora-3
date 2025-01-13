@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import ModalIdea from "../../components/NewIdeaModal"
 import ModalModifyIdea from "../../components/ModifyIdeaModal"
 import { onAuthStateChanged } from "firebase/auth"
+import PlaceholderList from "../../components/PlaceholderList"
 
 const IdeasPage = (props) => {
     const [user, setUser] = useState(null);
@@ -23,9 +24,8 @@ const IdeasPage = (props) => {
         })
     }, [])
 
-    const changeScreen = (path) => {
-        console.log("Navigating to:", path);
-        navigate(path);
+    const changeScreen = (path,state = null) => {
+        navigate(path, state={state});
     }
 
     const logOutHandle = async () => {
@@ -39,13 +39,23 @@ const IdeasPage = (props) => {
 
     const updateList = async () => {
         const ideas = await getAllIdeiasList();
-        setIdeasList(ideas.map(idea =>
-            <li key={idea.id}>
-                <h6>{idea.title}</h6>
-                <p>{idea.description}</p>
-                <p>{idea.date}</p>
-            </li>
-        ));
+        if((ideas.length !== 0) || (ideas !== null) || (ideas !== undefined)){
+            setIdeasList(ideas.map(idea =>
+                <li key={idea.id}>                    
+                    <h6>id: {idea.id}</h6>
+                    <p>titulo: {idea.title}</p>
+                    <p>de: {idea.user}</p>
+                    <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => { 
+                        const state = {user: idea.user,idea: idea.id}
+                        changeScreen("/banco-de-ideias-certificadora-3/IdeaView",state)
+                        }} />
+                    <Button className="default-button" text={"Ir para Visualização Detalhada da Ideia"} onClick={() => {
+                        const state = {user: idea.user, idea: idea.id}
+                        changeScreen("/banco-de-ideias-certificadora-3/DetailedIdeaView",state) 
+                        }} />
+                </li>
+            ));
+        }
     }
 
     return (
@@ -62,28 +72,12 @@ const IdeasPage = (props) => {
             {user && (
                 <div>
                     <ModalIdea email={user.email} />
+                    <ModalModifyIdea />
                     <PlaceholderList ideasList={ideasList} />
                 </div>
             )}
-            <div>
-                <ModalModifyIdea />
-            </div>
-            <div>
-                <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/IdeaView") }} />
-            </div>
-            <div>
-                <Button className="default-button" text={"Ir para Visualização Detalhada da Ideia"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/DetailedIdeaView") }} />
-            </div>
         </div>
     )
-}
-
-function PlaceholderList({ ideasList }) {
-    if (ideasList !== null) {
-        return <ul>{ideasList}</ul>;
-    } else {
-        return (<div></div>);
-    }
 }
 
 export default IdeasPage

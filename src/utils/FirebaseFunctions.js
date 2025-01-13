@@ -1,7 +1,7 @@
 import { auth } from '../config/Fb';
 import { db } from '../config/Fb';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
-import { addDoc, collection, query, setDoc, doc, deleteDoc, getDocs } from 'firebase/firestore';
+import { addDoc, collection, query, setDoc, doc, deleteDoc, getDocs, getDoc } from 'firebase/firestore';
 
 //coleção que armazena a lista de usuarios
 const collectionUserList = collection(db, "userCollectionList");
@@ -88,7 +88,7 @@ const addDataToListCollection = async (email, name, type) => {
 
 }
 
-//prototipo da função a ser utilizada na pagina de lista de ideias
+//retorna lista de todas as ideas
 const getAllIdeiasList = async () => {
   const queryUserList = query(collectionUserList);
   let userList = [];
@@ -97,15 +97,15 @@ const getAllIdeiasList = async () => {
   userSnapshot.forEach((doc)=>{
     userList.push(doc.id);
   });
-  for (const userId of userList){
-    const queryUserIdeas = query(collection(db,userId))
+  for (const email of userList){
+    const queryUserIdeas = query(collection(db,email))
     const userIdeaSnapshot = await getDocs(queryUserIdeas);
     userIdeaSnapshot.forEach((doc)=>{
       ideaList.push({
         title: doc.data().Title,
-        description: doc.data().Description,
         date: doc.data().Date.toDate().toLocaleString(),
-        id: doc.id
+        id: doc.id,
+        user: email
       });
     });
   }
@@ -137,6 +137,34 @@ const logOut = async () => {
   return controlVariable;
 }
 
+const getDetailedIdea = async (email,ideaId) => {
+  const ideaRef = doc(db,email,ideaId);
+  const docSnap = await getDoc(ideaRef);
+  let ideaInfo;
+  if((docSnap !== undefined) || (docSnap !== null)){
+    ideaInfo = {
+      title: docSnap.data().Title,
+      description: docSnap.data().Description,
+      agree: docSnap.data().Agree,
+      disagree: docSnap.data().Disagree
+    }
+  }
+  return ideaInfo;
+}
+
+const getUserIdeas = async (email) =>{
+  let ideaList = [];
+  const queryUserIdeas = query(collection(db,email))
+  const userIdeaSnapshot = await getDocs(queryUserIdeas);
+  userIdeaSnapshot.forEach((doc)=>{
+    ideaList.push({
+      title: doc.data().Title,
+      date: doc.data().Date.toDate().toLocaleString(),
+      id: doc.id,
+    });
+  });
+  return ideaList;
+}
 
 export {
   LoginFunction,
@@ -147,4 +175,6 @@ export {
   getAllIdeiasList,
   RecoverFunction,
   logOut,
+  getDetailedIdea,
+  getUserIdeas
 }

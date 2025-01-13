@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import "../IdeaView/ideaView.css"
+import { useLocation } from "react-router-dom";
+import { getDetailedIdea } from "../../utils/FirebaseFunctions";
 
 const IdeaView = () => {
     const [ideaTitle, setIdeaTitle] = useState("Teste Titulo");
     const [description, setDescription] = useState("Teste Descrição Teste Descrição Teste Descrição Teste Descrição Teste Descrição");
     const [agreeCount, setAgreeCount] = useState("5");
     const [disagreeCount, setDisagreeCount] = useState("2");
+
+    const location = useLocation();//recupera o id da pesquisa 
+
+    useEffect(()=>{
+        getIdeaInfo();
+    },[])
+
+    const getIdeaInfo = async () =>{
+        const ideaFields = await getDetailedIdea(location.state.user, location.state.idea);
+        setIdeaTitle(ideaFields.title);
+        setDescription(ideaFields.description);
+        setAgreeCount(ideaFields.agree);
+        setDisagreeCount(ideaFields.disagree);
+    }
 
     return (
         <main className="body">
