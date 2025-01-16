@@ -1,7 +1,7 @@
 import { auth } from '../config/Fb';
 import { db } from '../config/Fb';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
-import { addDoc, collection, query, setDoc, doc, deleteDoc, getDocs, getDoc } from 'firebase/firestore';
+import { addDoc, collection, query, setDoc, doc, deleteDoc, getDocs, getDoc, updateDoc } from 'firebase/firestore';
 
 //coleção que armazena a lista de usuarios
 const collectionUserList = collection(db, "userCollectionList");
@@ -144,9 +144,9 @@ const getDetailedIdea = async (email,ideaId) => {
   if((docSnap !== undefined) || (docSnap !== null)){
     ideaInfo = {
       title: docSnap.data().Title,
-      description: docSnap.data().Description,
-      agree: docSnap.data().Agree,
-      disagree: docSnap.data().Disagree
+      description: docSnap.data().Description
+      // agree: docSnap.data().Agree,
+      // disagree: docSnap.data().Disagree
     }
   }
   return ideaInfo;
@@ -166,6 +166,23 @@ const getUserIdeas = async (email) =>{
   return ideaList;
 }
 
+const addIdeaReaction = async (email,ideaId,value) =>{
+  const ideaRef = doc(db,email,ideaId);
+  const docSnapIdea = await getDoc(ideaRef);
+  let agreeArray = docSnapIdea.data().Agree;
+  let disagreeArray = docSnapIdea.data().Disagree;
+  
+  if(value === true){
+    updateDoc(ideaRef,{
+      Agree: (docSnapIdea.data().Agree + 1)
+    });
+  }else{
+    updateDoc(ideaRef,{
+      Disagree: (docSnapIdea.data().Disagree + 1)
+    });
+  }
+}
+
 export {
   LoginFunction,
   SingUpFunction,
@@ -176,5 +193,6 @@ export {
   RecoverFunction,
   logOut,
   getDetailedIdea,
-  getUserIdeas
+  getUserIdeas,
+  addIdeaReaction
 }

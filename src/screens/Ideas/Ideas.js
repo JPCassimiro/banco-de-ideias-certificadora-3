@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { auth } from "../../config/Fb"
 import { getAllIdeiasList, logOut } from "../../utils/FirebaseFunctions"
 import { useEffect, useState } from "react"
-import ModalIdea from "../../components/NewIdeaModal"
+import ModalIdea from "../../components/IdeaModal"
 import ModalModifyIdea from "../../components/ModifyIdeaModal"
 import { onAuthStateChanged } from "firebase/auth"
 import PlaceholderList from "../../components/PlaceholderList"
@@ -72,7 +72,7 @@ const IdeasPage = (props) => {
             {user && (
                 <div>
                     <ModalIdea email={user.email} />
-                    <ModalModifyIdea />
+                    <ModalIdea email={user.email} update={true} ideaId={"placeholder"} />
                     <PlaceholderList ideasList={ideasList} />
                 </div>
             )}
