@@ -19,8 +19,8 @@ const DetailedIdeaView = () => {
         const ideaFields = await getDetailedIdea(location.state.user, location.state.idea);
         setIdeaTitle(ideaFields.title);
         setDescription(ideaFields.description);
-        setAgreeCount(ideaFields.agree);
-        setDisagreeCount(ideaFields.disagree);
+        setAgreeCount(ideaFields.agree.length);
+        setDisagreeCount(ideaFields.disagree.length);
     }
 
     return (

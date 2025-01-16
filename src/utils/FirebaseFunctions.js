@@ -144,9 +144,9 @@ const getDetailedIdea = async (email,ideaId) => {
   if((docSnap !== undefined) || (docSnap !== null)){
     ideaInfo = {
       title: docSnap.data().Title,
-      description: docSnap.data().Description
-      // agree: docSnap.data().Agree,
-      // disagree: docSnap.data().Disagree
+      description: docSnap.data().Description,
+      agree: docSnap.data().Agree,
+      disagree: docSnap.data().Disagree
     }
   }
   return ideaInfo;
@@ -171,16 +171,28 @@ const addIdeaReaction = async (email,ideaId,value) =>{
   const docSnapIdea = await getDoc(ideaRef);
   let agreeArray = docSnapIdea.data().Agree;
   let disagreeArray = docSnapIdea.data().Disagree;
-  
-  if(value === true){
-    updateDoc(ideaRef,{
-      Agree: (docSnapIdea.data().Agree + 1)
-    });
-  }else{
-    updateDoc(ideaRef,{
-      Disagree: (docSnapIdea.data().Disagree + 1)
-    });
+
+  //caso o usuario já tenha reagido anteriormente
+  if(agreeArray.includes(email)&&(value === false)){
+    agreeArray.splice(agreeArray.indexOf(email),1); 
+    disagreeArray.push(email);
+  } else if(disagreeArray.includes(email)&&(value === true)){
+    disagreeArray.splice(disagreeArray.indexOf(email),1);
+    agreeArray.push(email);
+
+    //caso não tenha reagido
+  }else if(!disagreeArray.includes(email) && !agreeArray.includes(email)){
+    console.log("addideareaction")
+    if(value === true){
+      agreeArray.push(email);
+    }else{
+      disagreeArray.push(email);
+    }
   }
+  await updateDoc(ideaRef,{
+    Agree: agreeArray,
+    Disagree: disagreeArray
+  });
 }
 
 export {
