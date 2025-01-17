@@ -5,7 +5,7 @@ import { auth, db } from "../../config/Fb";
 import { collection, doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from "firebase/auth"
 import { getUserIdeas } from "../../utils/FirebaseFunctions"
-import PlaceholderList from "../../components/PlaceholderList";
+import ListComponent from "../../components/ListComponent"
 
 const ProfilePage = () => {
     let navigate = useNavigate();
@@ -41,17 +41,15 @@ const ProfilePage = () => {
         const ideas = await getUserIdeas(auth.currentUser.email);
         if((ideas.length !== 0) || (ideas !== null) || (ideas !== undefined)){
             setIdeasList(ideas.map(idea =>
-                <li key={idea.id}>                    
-                    <h6>id: {idea.id}</h6>
-                    <p>titulo: {idea.title}</p>
-                    <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => { 
-                        const state = {user: auth.currentUser.email, idea: idea.id}
-                        changeScreen("/banco-de-ideias-certificadora-3/IdeaView", state)
-                        }} />
-                    <Button className="default-button" text={"Ir para Visualização Detalhada da Ideia"} onClick={() => {
-                        const state = {user: auth.currentUser.email, idea: idea.id}
-                        changeScreen("/banco-de-ideias-certificadora-3/DetailedIdeaView", state) 
-                        }} />
+                <li key={idea.id}>
+                    <p>{idea.title}</p>
+                    <p>{idea.date}</p>
+                    <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => {
+                        const state = {user: idea.user,idea: idea.id}
+                        changeScreen("/banco-de-ideias-certificadora-3/IdeaView",state)
+                    }} />
+                    <Button className="default-button" text={"Remover"} onClick={() => {}} />
+                    <Button className="default-button" text={"Editar"} onClick={() => {}} />
                 </li>
             ));
         }
@@ -67,7 +65,7 @@ const ProfilePage = () => {
                 <h3>{user.Name} você é um {user.Type}</h3>
                 {user.SuperType ? <h3>Você também é um {user.SuperType}</h3> : <div></div>}
                 <Button className="default-button" text={"Ir para Ideias"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/IdeasPage") }} />
-                <PlaceholderList ideasList={ideasList} />
+                {/* <ListComponent ideasList={ideasList} /> */}
             </div>
             ):(<div></div>)}
         </div>

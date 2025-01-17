@@ -26,11 +26,11 @@ const RecoverFunction = async (props) => {
   let controlVariable;
   await sendPasswordResetEmail(auth, props.email)
     .then(doc => {
-      console.log('Email enviado: ' + JSON.stringify(doc));
+      // console.log('Email enviado: ' + JSON.stringify(doc));
       controlVariable = true;
     })
     .catch((e => {
-      console.log('Erro ao enviar email: ' + JSON.stringify(e));
+      // console.log('Erro ao enviar email: ' + JSON.stringify(e));
       controlVariable = false;
     }))
   return controlVariable;
@@ -94,18 +94,21 @@ const getAllIdeiasList = async () => {
   let userList = [];
   let ideaList = [];
   const userSnapshot = await getDocs(queryUserList);
-  userSnapshot.forEach((doc)=>{
-    userList.push(doc.id);
+  userSnapshot.forEach((doc) => {
+    userList.push({ email: doc.id, name: doc.data().Name });
   });
-  for (const email of userList){
-    const queryUserIdeas = query(collection(db,email))
+  for (const user of userList) {
+    const queryUserIdeas = query(collection(db, user.email))
     const userIdeaSnapshot = await getDocs(queryUserIdeas);
-    userIdeaSnapshot.forEach((doc)=>{
+    userIdeaSnapshot.forEach((doc) => {
       ideaList.push({
         title: doc.data().Title,
-        date: doc.data().Date.toDate().toLocaleString(),
+        date: doc.data().Date.toDate().toLocaleString([], { day: "numeric", month: "numeric", year: "numeric" }),
         id: doc.id,
-        user: email
+        agree: doc.data().Agree,
+        disagree: doc.data().Disagree,
+        user: user.email,
+        name: user.name
       });
     });
   }
@@ -114,14 +117,17 @@ const getAllIdeiasList = async () => {
 
 //associar o id da ideia com a flatlist
 const deleteUserIdea = async (email, ideaId) => {
-  const collectionUser = collection(db, email);
-  await deleteDoc(collectionUser, ideaId)
+  let controlVariable;
+  await deleteDoc(doc(db, email, ideaId))
     .then((doc) => {
+      controlVariable = true;
       //console.log(`Ideia com id ${props.ideaId} de usuario ${props.email} foi removida: ` + JSON.stringify(doc))
     })
     .catch((e) => {
+      controlVariable = false;
       //console.log(`Ideia com id ${props.ideaId} de usuario ${props.email} NÃO pode ser exluida: ` + JSON.stringify(e))
     })
+  return controlVariable;
 }
 
 const logOut = async () => {
@@ -137,11 +143,11 @@ const logOut = async () => {
   return controlVariable;
 }
 
-const getDetailedIdea = async (email,ideaId) => {
-  const ideaRef = doc(db,email,ideaId);
+const getDetailedIdea = async (email, ideaId) => {
+  const ideaRef = doc(db, email, ideaId);
   const docSnap = await getDoc(ideaRef);
   let ideaInfo;
-  if((docSnap !== undefined) || (docSnap !== null)){
+  if ((docSnap !== undefined) || (docSnap !== null)) {
     ideaInfo = {
       title: docSnap.data().Title,
       description: docSnap.data().Description,
@@ -152,11 +158,11 @@ const getDetailedIdea = async (email,ideaId) => {
   return ideaInfo;
 }
 
-const getUserIdeas = async (email) =>{
+const getUserIdeas = async (email) => {
   let ideaList = [];
-  const queryUserIdeas = query(collection(db,email))
+  const queryUserIdeas = query(collection(db, email))
   const userIdeaSnapshot = await getDocs(queryUserIdeas);
-  userIdeaSnapshot.forEach((doc)=>{
+  userIdeaSnapshot.forEach((doc) => {
     ideaList.push({
       title: doc.data().Title,
       date: doc.data().Date.toDate().toLocaleString(),
@@ -166,33 +172,42 @@ const getUserIdeas = async (email) =>{
   return ideaList;
 }
 
-const addIdeaReaction = async (email,ideaId,value) =>{
-  const ideaRef = doc(db,email,ideaId);
+const addIdeaReaction = async (email, ideaId, value) => {
+  const ideaRef = doc(db, email, ideaId);
   const docSnapIdea = await getDoc(ideaRef);
   let agreeArray = docSnapIdea.data().Agree;
   let disagreeArray = docSnapIdea.data().Disagree;
 
   //caso o usuario já tenha reagido anteriormente
-  if(agreeArray.includes(email)&&(value === false)){
-    agreeArray.splice(agreeArray.indexOf(email),1); 
+  if (agreeArray.includes(email) && (value === false)) {
+    agreeArray.splice(agreeArray.indexOf(email), 1);
     disagreeArray.push(email);
-  } else if(disagreeArray.includes(email)&&(value === true)){
-    disagreeArray.splice(disagreeArray.indexOf(email),1);
+  } else if (disagreeArray.includes(email) && (value === true)) {
+    disagreeArray.splice(disagreeArray.indexOf(email), 1);
     agreeArray.push(email);
 
     //caso não tenha reagido
-  }else if(!disagreeArray.includes(email) && !agreeArray.includes(email)){
-    console.log("addideareaction")
-    if(value === true){
+  } else if (!disagreeArray.includes(email) && !agreeArray.includes(email)) {
+    if (value === true) {
       agreeArray.push(email);
-    }else{
+    } else {
       disagreeArray.push(email);
     }
   }
-  await updateDoc(ideaRef,{
+  await updateDoc(ideaRef, {
     Agree: agreeArray,
     Disagree: disagreeArray
-  });
+  })
+}
+
+const updateIdea = async (email, ideaId, data) =>{
+  await updateDoc(doc(db, email, ideaId), data)
+  .then(()=>{
+    return true;
+  })
+  .catch(()=>{
+    return false
+  })
 }
 
 export {
@@ -206,5 +221,6 @@ export {
   logOut,
   getDetailedIdea,
   getUserIdeas,
-  addIdeaReaction
+  addIdeaReaction,
+  updateIdea
 }

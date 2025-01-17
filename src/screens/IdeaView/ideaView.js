@@ -5,16 +5,17 @@ import { useLocation } from "react-router-dom";
 import { getDetailedIdea } from "../../utils/FirebaseFunctions";
 import { addIdeaReaction } from "../../utils/FirebaseFunctions";
 import { useNavigate } from "react-router-dom";
+import { deleteUserIdea } from "../../utils/FirebaseFunctions";
+import ModalIdea from "../../components/IdeaModal";
 
 const IdeaView = () => {
-    const [ideaTitle, setIdeaTitle] = useState("Teste Titulo");
-    const [description, setDescription] = useState("Teste Descrição Teste Descrição Teste Descrição Teste Descrição Teste Descrição");
-    const [agreeCount, setAgreeCount] = useState("5");
-    const [disagreeCount, setDisagreeCount] = useState("2");
+    const [ideaTitle, setIdeaTitle] = useState("Carregando...");
+    const [description, setDescription] = useState("Carregando...");
+    const [agreeCount, setAgreeCount] = useState();
+    const [disagreeCount, setDisagreeCount] = useState();
 
     let navigate = useNavigate();
     
-
     const changeScreen = (path,state = null) => {
         navigate(path, state={state});
     }
@@ -33,7 +34,12 @@ const IdeaView = () => {
     }
 
     const handleReaction = async (value) =>{
-        await addIdeaReaction(location.state.user, location.state.idea, value);
+        const controlVariable = await addIdeaReaction(location.state.user, location.state.idea, value);
+        changeScreen("/banco-de-ideias-certificadora-3/IdeasPage");
+    }
+
+    const handleDelete = async () =>{
+        await deleteUserIdea(location.state.user, location.state.idea);
         changeScreen("/banco-de-ideias-certificadora-3/IdeasPage");
     }
 
@@ -55,6 +61,12 @@ const IdeaView = () => {
                     <span><strong>Discordam: </strong>{disagreeCount}</span>
                 </div>
             </div>
+            <div>
+                    <Button className={"default-button"} onClick={()=>{handleDelete()}} text={"Excluir Ideia"}/>
+                </div>
+                <div>
+                    <ModalIdea text={"Modificar Ideia"} currentTitle={ideaTitle} currentDescription={description} ideaId={location.state.idea} email={location.state.user} update={true}/>    
+                </div>
         </main>
     )
 }

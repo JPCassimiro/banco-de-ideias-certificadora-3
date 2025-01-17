@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Button from './Button'
 import InputField from './InputField'
 import { addDataToUserCollection } from '../utils/FirebaseFunctions';
+import { updateIdea } from '../utils/FirebaseFunctions';
 import "./Styles/NewIdea.css"
 
 const ModalIdea = (props) => {
@@ -29,10 +30,7 @@ const ModalIdea = (props) => {
 
     useEffect(()=>{
         if(props.update === true){
-            setTitle("placeholder");
-            setDescription("Plaholder plaholder")
-            setCharCountTitle(title.length);
-            setCharCountDescription(description.length);
+            getIdeaForUpdate();
         }
     },[])
 
@@ -47,7 +45,10 @@ const ModalIdea = (props) => {
                 Date: new Date()
             }
             if(props.update === true){
-                //função de update na idea
+                const controlVariable = await updateIdea(props.email, props.ideaId,{
+                    Title: title,
+                    Description: description
+                });
             }else{
                 await addDataToUserCollection(props.email, data);
             }
@@ -59,10 +60,17 @@ const ModalIdea = (props) => {
         }
     }
 
+    const getIdeaForUpdate = async () =>{
+        setTitle(props.currentTitle);
+        setDescription(props.currentDescription);
+        setCharCountTitle(title.length);
+        setCharCountDescription(description.length);
+    }
+
     return (
         <>
             <div>
-                <Button className="default-button" text="Abrir" onClick={handleShow} />
+                <Button className="default-button" text={props.text} onClick={handleShow} />
             </div>
             <div>
                 <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">

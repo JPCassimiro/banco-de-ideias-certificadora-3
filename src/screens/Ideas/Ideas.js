@@ -1,15 +1,15 @@
-import Button from "../../components/Button"
 import { useNavigate } from "react-router-dom"
 import { auth } from "../../config/Fb"
 import { getAllIdeiasList, logOut } from "../../utils/FirebaseFunctions"
 import { useEffect, useState } from "react"
-import ModalIdea from "../../components/IdeaModal"
-import ModalModifyIdea from "../../components/ModifyIdeaModal"
 import { onAuthStateChanged } from "firebase/auth"
-import PlaceholderList from "../../components/PlaceholderList"
+import ListComponent from "../../components/ListComponent"
+import { doc, collection, getDoc } from "firebase/firestore"
+import { db } from "../../config/Fb"
 
 const IdeasPage = (props) => {
     const [user, setUser] = useState(null);
+    const [userData, setUserData] = useState(null);
     const [ideasList, setIdeasList] = useState(null);
     let navigate = useNavigate();
 
@@ -17,6 +17,7 @@ const IdeasPage = (props) => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
+                getCurrentUserData();
                 updateList();
             } else {
                 changeScreen("/banco-de-ideias-certificadora-3/LoginPage");
@@ -24,15 +25,20 @@ const IdeasPage = (props) => {
         })
     }, [])
 
+    const getCurrentUserData = async () =>{
+        const docRef = doc(collection(db, "userCollectionList"), auth.currentUser.email);
+        const docSnap = await getDoc(docRef)
+        const userDataConst = docSnap.data();
+        setUserData(userDataConst);
+    }
+
     const changeScreen = (path,state = null) => {
         navigate(path, state={state});
     }
 
     const logOutHandle = async () => {
         let controlVariable = await logOut();
-        console.log(controlVariable);
         if (controlVariable) {
-            console.log("logOutHandle sucesso");
             changeScreen("/banco-de-ideias-certificadora-3/LoginPage");
         }
     }
@@ -40,27 +46,24 @@ const IdeasPage = (props) => {
     const updateList = async () => {
         const ideas = await getAllIdeiasList();
         if((ideas.length !== 0) || (ideas !== null) || (ideas !== undefined)){
-            setIdeasList(ideas.map(idea =>
-                <li key={idea.id}>                    
-                    <h6>id: {idea.id}</h6>
-                    <p>titulo: {idea.title}</p>
-                    <p>de: {idea.user}</p>
-                    <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => { 
-                        const state = {user: idea.user,idea: idea.id}
-                        changeScreen("/banco-de-ideias-certificadora-3/IdeaView",state)
-                        }} />
-                    <Button className="default-button" text={"Ir para Visualização Detalhada da Ideia"} onClick={() => {
-                        const state = {user: idea.user, idea: idea.id}
-                        changeScreen("/banco-de-ideias-certificadora-3/DetailedIdeaView",state) 
-                        }} />
-                </li>
-            ));
+            // setIdeasList(ideas.map(idea =>
+            //     <li key={idea.id}>
+            //         <p>{idea.title}</p>
+            //         <p>{idea.user}</p>
+            //         <p>{idea.date}</p>
+            //         <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => {
+            //             const state = {user: idea.user,idea: idea.id}
+            //             changeScreen("/banco-de-ideias-certificadora-3/IdeaView",state)
+            //         }} />
+            //     </li>
+            // ));
+            setIdeasList(ideas);
         }
     }
 
     return (
         <div>
-            <h1>
+            {/* <h1>
                 Ideias
             </h1>
             <div>
@@ -68,12 +71,10 @@ const IdeasPage = (props) => {
             </div>
             <div>
                 <Button className="default-button" text={"Logout"} onClick={() => { logOutHandle() }} />
-            </div>
+            </div> */}
             {user && (
                 <div>
-                    <ModalIdea email={user.email} />
-                    <ModalIdea email={user.email} update={true} ideaId={"placeholder"} />
-                    <PlaceholderList ideasList={ideasList} />
+                    {ideasList ? <ListComponent logOutHandle={()=>{logOutHandle()}} email={user.email} ideas={ideasList} /> : <div><p>Carregando...</p></div>}
                 </div>
             )}
         </div>
