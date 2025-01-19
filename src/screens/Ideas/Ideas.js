@@ -46,32 +46,12 @@ const IdeasPage = (props) => {
     const updateList = async () => {
         const ideas = await getAllIdeiasList();
         if((ideas.length !== 0) || (ideas !== null) || (ideas !== undefined)){
-            // setIdeasList(ideas.map(idea =>
-            //     <li key={idea.id}>
-            //         <p>{idea.title}</p>
-            //         <p>{idea.user}</p>
-            //         <p>{idea.date}</p>
-            //         <Button className="default-button" text={"Ir para Visualizar Ideia"} onClick={() => {
-            //             const state = {user: idea.user,idea: idea.id}
-            //             changeScreen("/banco-de-ideias-certificadora-3/IdeaView",state)
-            //         }} />
-            //     </li>
-            // ));
             setIdeasList(ideas);
         }
     }
 
     return (
         <div>
-            {/* <h1>
-                Ideias
-            </h1>
-            <div>
-                <Button className="default-button" text={"Ir para Perfil"} onClick={() => { changeScreen("/banco-de-ideias-certificadora-3/ProfilePage") }} />
-            </div>
-            <div>
-                <Button className="default-button" text={"Logout"} onClick={() => { logOutHandle() }} />
-            </div> */}
             {user && (
                 <div>
                     {ideasList ? <ListComponent logOutHandle={()=>{logOutHandle()}} email={user.email} ideas={ideasList} /> : <div><p>Carregando...</p></div>}

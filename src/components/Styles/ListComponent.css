@@ -29,7 +29,7 @@ nav {
     margin-right: 100px;
 }
 
-main {
+/* main {
     margin: 0px;
     background-color: #f0f0f0;
     min-height: 100vh;
@@ -40,7 +40,7 @@ main {
     flex-direction: column;
     align-items: flex-start;
     margin: 0px;
-}
+} */
 
 .input-container {
     margin: 10px auto;
@@ -66,42 +66,69 @@ li {
     justify-content: center;
 }
 
-.list {
-    width: 100%;
+.ideas-list {
+    flex:1
 }
 
-.ideias-container {
+.container-title-idea{
+    flex:0.6
+}
+
+.container-name-idea{
+    flex:0.25
+}
+
+.container-date-idea{
+    flex:0.05
+}
+
+.container-rating-idea{
+    flex:0.1
+}
+
+.ideas-list-container {
     margin: 10px auto;
     background-color: #d89ff8;
     display: flex;
-    width: 90%;
+    width: 80%;
     height: auto;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
     border-radius: 5px;
     padding: 10px;
+}
 
-
+.idea-li-item{
+    padding-left: 4px;
+    flex:1;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    align-self: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: solid 1px rgb(183, 71, 235);
+    border-radius: 11px;
 }
 
 .input-container input {
     width: 50%;
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #e5c7f7;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-body {
+/* body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
-}
+} */
 
 .AddIdea {
     display: flex;
