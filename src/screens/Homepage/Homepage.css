@@ -1,22 +1,142 @@
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background: url('../../../rmImgs/idea_img.jpg') no-repeat center center/cover; 
+  color: #fff;
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 16px 41px;
+  background-color: rgb(74, 64, 97); 
+  color: #eee9e9;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-nav {
+  display: flex;
+  gap: 15px;
+}
+
+.header-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.header-link:hover {
+  color: #e2c346;
+}
+
+
 .center-square {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    padding: 20px;
-    background-color: #825ADB;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 351px;
+  padding: 25px;
+  background-color: rgba(130, 90, 219, 0.9); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #000000;
+}
 
-  .home-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #423957;
-  }
+.welcome-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
 
-  .link-text{
-    color: #FFFFFF;
-  }
+.description {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #eaeaea;
+}
+
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 20px 0;
+}
+
+.button_1,
+.button_2{
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+
+.button_1 {
+  background-color: #debd3b;
+  color: #423957;
+  border: none;
+}
+
+.button_1:hover {
+  background-color: #f4bc13;
+  transform: scale(1.01);
+}
+
+.button_2 {
+  background-color: #fff;
+  color: #825ADB;
+  border: 2px solid #825ADB;
+}
+
+.button_2:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.01);
+}
+
+
+.link-text {
+  color: #f4d03f;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+.link-text_2{
+  color: rgb(249, 251, 147);
+  text-decoration: none;
+}
+
+.link-text:hover {
+  border-color: #ffc107;
+}
+
+.footer {
+  width: 100%;
+  padding: 14px;
+  background-color: rgb(74, 64, 97); 
+  text-align: center;
+  color: #fff;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  color: #eaeaea;
+}
