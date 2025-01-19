@@ -54,7 +54,7 @@ const IdeasPage = (props) => {
         <div>
             {user && (
                 <div>
-                    {ideasList ? <ListComponent logOutHandle={()=>{logOutHandle()}} email={user.email} ideas={ideasList} /> : <div><p>Carregando...</p></div>}
+                    {ideasList ? <ListComponent logOutHandle={()=>{logOutHandle()}} userSuperType={userData.SuperType} email={user.email} ideas={ideasList} /> : <div><p>Carregando...</p></div>}
                 </div>
             )}
         </div>

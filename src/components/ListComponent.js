@@ -48,7 +48,7 @@ function ListComponent(props) {
                     <ul className="ideas-list">
                         {filteredIdeas.map((idea) => (
                             <li className="idea-li-item" onClick={() => {
-                                const state = {user: idea.user,idea: idea.id}
+                                const state = {user: idea.user,idea: idea.id, currentUserType: props.userSuperType}
                                 changeScreen("/banco-de-ideias-certificadora-3/IdeaView",state)
                                 }} key={idea.id}>
                                 <div className="container-title-idea"><p>{idea.title}</p></div>

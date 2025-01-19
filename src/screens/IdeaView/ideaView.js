@@ -7,25 +7,35 @@ import { addIdeaReaction } from "../../utils/FirebaseFunctions";
 import { useNavigate } from "react-router-dom";
 import { deleteUserIdea } from "../../utils/FirebaseFunctions";
 import ModalIdea from "../../components/IdeaModal";
+import { auth } from "../../config/Fb";
 
 const IdeaView = () => {
     const [ideaTitle, setIdeaTitle] = useState("Carregando...");
     const [description, setDescription] = useState("Carregando...");
     const [agreeCount, setAgreeCount] = useState();
     const [disagreeCount, setDisagreeCount] = useState();
+    const [editControl, setEditControl] = useState(null);
+    const [deleteControl, setDeleteControl] = useState(null);
 
     let navigate = useNavigate();
-    
-    const changeScreen = (path,state = null) => {
-        navigate(path, state={state});
+
+    const changeScreen = (path, state = null) => {
+        navigate(path, state = { state });
     }
     const location = useLocation();//recupera o id da pesquisa 
 
-    useEffect(()=>{
+    useEffect(() => {
         getIdeaInfo();
-    },[])
+        if (auth.currentUser.email === location.state.user) {
+            setEditControl(true);
+            setDeleteControl(true);
+        }
+        if(location.state.currentUserType ){
+            setDeleteControl(true);
+        }
+    }, [])
 
-    const getIdeaInfo = async () =>{
+    const getIdeaInfo = async () => {
         const ideaFields = await getDetailedIdea(location.state.user, location.state.idea);
         setIdeaTitle(ideaFields.title);
         setDescription(ideaFields.description);
@@ -33,12 +43,12 @@ const IdeaView = () => {
         setDisagreeCount(ideaFields.disagree.length);
     }
 
-    const handleReaction = async (value) =>{
+    const handleReaction = async (value) => {
         const controlVariable = await addIdeaReaction(location.state.user, location.state.idea, value);
         changeScreen("/banco-de-ideias-certificadora-3/IdeasPage");
     }
 
-    const handleDelete = async () =>{
+    const handledelete = async () => {
         await deleteUserIdea(location.state.user, location.state.idea);
         changeScreen("/banco-de-ideias-certificadora-3/IdeasPage");
     }
@@ -53,8 +63,8 @@ const IdeaView = () => {
                 </div>
                 <p className="questionVote">Você concorda com esta ideia?</p>
                 <div className="buttonsContainer">
-                    <Button className="voteButton" text="Sim" onClick={()=>{handleReaction(true)}} />
-                    <Button className="voteButton" text="Não" onClick={()=>{handleReaction(false)}} />
+                    <Button className="voteButton" text="Sim" onClick={() => { handleReaction(true) }} />
+                    <Button className="voteButton" text="Não" onClick={() => { handleReaction(false) }} />
                 </div>
                 <div className="votesCount">
                     <span><strong>Concordam: </strong>{agreeCount}</span>
@@ -62,11 +72,11 @@ const IdeaView = () => {
                 </div>
             </div>
             <div>
-                    <Button className={"default-button"} onClick={()=>{handleDelete()}} text={"Excluir Ideia"}/>
-                </div>
-                <div>
-                    <ModalIdea text={"Modificar Ideia"} currentTitle={ideaTitle} currentDescription={description} ideaId={location.state.idea} email={location.state.user} update={true}/>    
-                </div>
+                {deleteControl && (<Button className={"default-button"} onClick={() => { handledelete() }} text={"Excluir Ideia"} />)}
+            </div>
+            <div>
+                {editControl && (<ModalIdea text={"Modificar Ideia"} currentTitle={ideaTitle} currentDescription={description} ideaId={location.state.idea} email={location.state.user} update={true} />)}
+            </div>
         </main>
     )
 }
