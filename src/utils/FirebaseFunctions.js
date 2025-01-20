@@ -103,7 +103,7 @@ const getAllIdeiasList = async () => {
     userIdeaSnapshot.forEach((doc) => {
       ideaList.push({
         title: doc.data().Title,
-        date: doc.data().Date.toDate().toLocaleString([], { day: "numeric", month: "numeric", year: "numeric" }),
+        date: doc.data().Date.toDate(),
         id: doc.id,
         agree: doc.data().Agree,
         disagree: doc.data().Disagree,
@@ -165,8 +165,11 @@ const getUserIdeas = async (email) => {
   userIdeaSnapshot.forEach((doc) => {
     ideaList.push({
       title: doc.data().Title,
-      date: doc.data().Date.toDate().toLocaleString(),
+      date: doc.data().Date.toDate(),
+      agree: doc.data().Agree,
+      disagree: doc.data().Disagree,
       id: doc.id,
+      user: email 
     });
   });
   return ideaList;

@@ -1,0 +1,13 @@
+.container{
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.profile-user-name{
+    flex:0.5;
+}
+
+.profile-username-type{
+    flex:0.5;
+}

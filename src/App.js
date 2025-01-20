@@ -8,7 +8,7 @@ import RecoverPage from './screens/Recover/Recover';
 import IdeaView from './screens/IdeaView/ideaView';
 import DetailedIdeaView from './screens/DetailedIdeaView/DetailedIdeaView';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-
+import "./App.css"
 
 const App = () => {
   return (

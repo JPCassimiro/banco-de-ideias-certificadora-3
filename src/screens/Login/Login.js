@@ -59,10 +59,10 @@ const LoginPage = () => {
         <h3 className="error-message">{errorMessage}</h3>
       </div>
       <div>
-        <Link to="/banco-de-ideias-certificadora-3/SignPage" className="link-text">Criar conta.</Link>
+        <Link to="/banco-de-ideias-certificadora-3/SignPage" className="link-text">Criar conta</Link>
       </div>
       <div>
-        <Link to="/banco-de-ideias-certificadora-3/RecoverPage" className="link-text">Recuperar senha.</Link>
+        <Link to="/banco-de-ideias-certificadora-3/RecoverPage" className="link-text">Recuperar senha</Link>
       </div>
     </div>
   );
