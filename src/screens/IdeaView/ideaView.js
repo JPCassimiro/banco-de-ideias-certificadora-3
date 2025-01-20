@@ -44,7 +44,7 @@ const IdeaView = () => {
     }
 
     const handleReaction = async (value) => {
-        const controlVariable = await addIdeaReaction(location.state.user, location.state.idea, value);
+        const controlVariable = await addIdeaReaction(location.state.user, location.state.idea, value, auth.currentUser.email);
         changeScreen("/banco-de-ideias-certificadora-3/IdeasPage");
     }
 

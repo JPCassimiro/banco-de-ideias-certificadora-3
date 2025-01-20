@@ -175,26 +175,26 @@ const getUserIdeas = async (email) => {
   return ideaList;
 }
 
-const addIdeaReaction = async (email, ideaId, value) => {
+const addIdeaReaction = async (email, ideaId, value, currentUser) => {
   const ideaRef = doc(db, email, ideaId);
   const docSnapIdea = await getDoc(ideaRef);
   let agreeArray = docSnapIdea.data().Agree;
   let disagreeArray = docSnapIdea.data().Disagree;
 
   //caso o usuario já tenha reagido anteriormente
-  if (agreeArray.includes(email) && (value === false)) {
-    agreeArray.splice(agreeArray.indexOf(email), 1);
-    disagreeArray.push(email);
-  } else if (disagreeArray.includes(email) && (value === true)) {
-    disagreeArray.splice(disagreeArray.indexOf(email), 1);
-    agreeArray.push(email);
+  if (agreeArray.includes(currentUser) && (value === false)) {
+    agreeArray.splice(agreeArray.indexOf(currentUser), 1);
+    disagreeArray.push(currentUser);
+  } else if (disagreeArray.includes(currentUser) && (value === true)) {
+    disagreeArray.splice(disagreeArray.indexOf(currentUser), 1);
+    agreeArray.push(currentUser);
 
     //caso não tenha reagido
-  } else if (!disagreeArray.includes(email) && !agreeArray.includes(email)) {
+  } else if (!disagreeArray.includes(currentUser) && !agreeArray.includes(currentUser)) {
     if (value === true) {
-      agreeArray.push(email);
+      agreeArray.push(currentUser);
     } else {
-      disagreeArray.push(email);
+      disagreeArray.push(currentUser);
     }
   }
   await updateDoc(ideaRef, {
