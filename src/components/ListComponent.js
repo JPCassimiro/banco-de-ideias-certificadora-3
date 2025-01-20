@@ -40,7 +40,7 @@ function ListComponent(props) {
                 <div className="input-container">
                     <input
                         type="text"
-                        placeholder="Filtrar:"
+                        placeholder="Filtrar"
                         value={filterText}
                         onChange={(e) => {setFilterText(e.target.value)}}
                     />

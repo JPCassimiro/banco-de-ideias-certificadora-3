@@ -1,10 +1,11 @@
 import Modal from 'react-bootstrap/Modal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from './Button'
 import InputField from './InputField'
 import { addDataToUserCollection } from '../utils/FirebaseFunctions';
 import { updateIdea } from '../utils/FirebaseFunctions';
 import "./Styles/NewIdea.css"
+import { useNavigate } from 'react-router-dom';
 
 const ModalIdea = (props) => {
     const [show, setShow] = useState(false);
@@ -15,6 +16,11 @@ const ModalIdea = (props) => {
     const [errorMessage, setErrorMessage] = useState('');
     const maxLengthTitle = 45;
     const maxLengthDescription = 700;
+    let navigate = useNavigate();
+    
+    const changeScreen = (path, state = null) => {
+        navigate(path, state = { state });
+    }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -28,12 +34,6 @@ const ModalIdea = (props) => {
         setDescription(e.target.value);
         setCharCountDescription(e.target.value.length);
     }
-
-    useEffect(()=>{
-        if(props.update === true){
-            getIdeaForUpdate();
-        }
-    },[])
 
     const handleSend = async (e) => {
         e.preventDefault();
@@ -51,6 +51,9 @@ const ModalIdea = (props) => {
                     Title: title,
                     Description: description
                 });
+                handleClose();
+                changeScreen("/banco-de-ideias-certificadora-3/IdeasPage");
+                return
             }else{
                 await addDataToUserCollection(props.email, data);
             }
@@ -62,14 +65,7 @@ const ModalIdea = (props) => {
             setErrorMessage("Preencha todos os campos");
         }
     }
-
-    const getIdeaForUpdate = async () =>{
-        setTitle(props.currentTitle);
-        setDescription(props.currentDescription);
-        setCharCountTitle(title.length);
-        setCharCountDescription(description.length);
-    }
-
+    
     return (
         <>
             <div>
