@@ -22,7 +22,7 @@ const IdeaView = () => {
     const changeScreen = (path, state = null) => {
         navigate(path, state = { state });
     }
-    const location = useLocation();//recupera o id da pesquisa 
+    const location = useLocation();//recupera o id da ideia
 
     useEffect(() => {
         getIdeaInfo();
@@ -30,7 +30,7 @@ const IdeaView = () => {
             setEditControl(true);
             setDeleteControl(true);
         }
-        if(location.state.currentUserType ){
+        if (location.state.currentUserType) {
             setDeleteControl(true);
         }
     }, [])
@@ -58,8 +58,7 @@ const IdeaView = () => {
             <div className="ideaContainer">
                 <h3 className="title"><strong>Título: </strong>{ideaTitle}</h3>
                 <div className="description">
-                    <strong>Descrição: </strong>
-                    <p>{description}</p>
+                    <p><strong>Descrição: </strong>{description}</p>
                 </div>
                 <p className="questionVote">Você concorda com esta ideia?</p>
                 <div className="buttonsContainer">
@@ -70,12 +69,15 @@ const IdeaView = () => {
                     <span><strong>Concordam: </strong>{agreeCount}</span>
                     <span><strong>Discordam: </strong>{disagreeCount}</span>
                 </div>
-            </div>
-            <div>
-                {deleteControl && (<Button className={"default-button"} onClick={() => { handledelete() }} text={"Excluir Ideia"} />)}
-            </div>
-            <div>
-                {editControl && (<ModalIdea text={"Modificar Ideia"} currentTitle={ideaTitle} currentDescription={description} ideaId={location.state.idea} email={location.state.user} update={true} />)}
+                <div className="DelEditBtns">
+                    <div className="btn">
+                        {deleteControl && (<Button className={"default-button"} onClick={() => { handledelete() }} text={"Excluir Ideia"} />)}
+                    </div>
+                    <div className="btn">
+                        {editControl && (<ModalIdea text={"Modificar Ideia"} currentTitle={ideaTitle} currentDescription={description} ideaId={location.state.idea} email={location.state.user} update={true} />)}
+                    </div>
+                </div>
+
             </div>
         </main>
     )
