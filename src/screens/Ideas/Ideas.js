@@ -51,7 +51,7 @@ const IdeasPage = (props) => {
     }
 
     return (
-        <div>
+        <div className="ideas-page-container">
             {user && (
                 <div>
                     {ideasList ? <ListComponent logOutHandle={()=>{logOutHandle()}} userSuperType={userData.SuperType} email={user.email} ideas={ideasList} /> : <div><p>Carregando...</p></div>}

@@ -1,4 +1,4 @@
-header {
+.list-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -11,7 +11,7 @@ header {
     height: 80px;
 }
 
-header h1 {
+#header-title{
     font-size: 1.5rem;
     font-weight: bold;
     color: #000;
@@ -19,7 +19,11 @@ header h1 {
     flex: 1;
 }
 
-nav {
+.list-component-container{
+    background-color: #825ADB;
+}
+
+.list-nav{
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -71,19 +75,27 @@ li {
 }
 
 .container-title-idea{
-    flex:0.6
+    flex:0.6;
+    padding-left: 7px;
+    padding-right: 11px;
 }
 
 .container-name-idea{
-    flex:0.25
+    flex:0.20;
+    padding-left: 7px;
+    padding-right: 11px;
 }
 
 .container-date-idea{
-    flex:0.05
+    flex:0.1;
+    padding-left: 7px;
+    padding-right: 11px;
 }
 
 .container-rating-idea{
-    flex:0.1
+    flex:0.1;
+    padding-left: 7px;
+    padding-right: 11px;
 }
 
 .ideas-list-container {

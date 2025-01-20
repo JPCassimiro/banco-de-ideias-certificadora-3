@@ -7,7 +7,7 @@ import ProfilePage from './screens/Profile/Profile';
 import RecoverPage from './screens/Recover/Recover';
 import IdeaView from './screens/IdeaView/ideaView';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-
+import "./App.css"
 
 const App = () => {
   return (
