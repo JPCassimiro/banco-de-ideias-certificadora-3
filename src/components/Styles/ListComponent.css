@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #d89ff8;
+    background-color: #825ADB;
     top: 0;
     left: 0;
     right: 0;
@@ -20,7 +20,7 @@
 }
 
 .list-component-container{
-    background-color: #825ADB;
+    background-color: #000000e3;
 }
 
 .list-nav{
@@ -71,7 +71,8 @@ li {
 }
 
 .ideas-list {
-    flex:1
+    flex:1;
+    color: white;
 }
 
 .container-title-idea{
@@ -100,7 +101,7 @@ li {
 
 .ideas-list-container {
     margin: 10px auto;
-    background-color: #d89ff8;
+    background-color: #423957c2;
     display: flex;
     width: 80%;
     height: auto;
@@ -120,7 +121,7 @@ li {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border: solid 1px rgb(183, 71, 235);
+    border: solid 1px rgb(238, 238, 238);
     border-radius: 11px;
 }
 
