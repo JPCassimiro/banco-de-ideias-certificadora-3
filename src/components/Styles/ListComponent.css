@@ -1,14 +1,16 @@
+
 .list-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #825ADB;
+    background-color: #d89ff8;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
     height: 80px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 #header-title{
@@ -19,9 +21,6 @@
     flex: 1;
 }
 
-.list-component-container{
-    background-color: #000000e3;
-}
 
 .list-nav{
     display: flex;
@@ -34,24 +33,33 @@
 }
 
 main {
-   height: 100vh;
+    margin: 0px;
+    background-color: #825ADB;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 } 
 
 .input-container {
-    margin: 10px auto;
+    margin: 15px auto;
     width: 90%;
     display: flex;
     justify-content: flex-start;
-    box-sizing: border-box;
+    box-sizing: border-box;   
+}
+
+input{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 li {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 80%;
+    width: 100%;
     padding: 10px 0;
-
     flex-direction: row;
 }
 
@@ -62,8 +70,7 @@ li {
 }
 
 .ideas-list {
-    flex:1;
-    color: white;
+    flex:1
 }
 
 .container-title-idea{
@@ -90,9 +97,13 @@ li {
     padding-right: 11px;
 }
 
+.container-icon {
+    cursor: pointer;
+}
+
 .ideas-list-container {
-    margin: 10px auto;
-    background-color: #423957c2;
+    margin: 25px auto;
+    background-color: #d89ff8;
     display: flex;
     width: 80%;
     height: auto;
@@ -101,6 +112,7 @@ li {
     box-sizing: border-box;
     border-radius: 5px;
     padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .idea-li-item{
@@ -112,8 +124,9 @@ li {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border: solid 1px rgb(238, 238, 238);
+    border: solid 2px rgb(183, 71, 235);
     border-radius: 11px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .input-container input {
@@ -124,15 +137,6 @@ li {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
-/* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #f4f4f4;
-} */
 
 .AddIdea {
     display: flex;
@@ -188,12 +192,3 @@ li {
     color: rgb(0, 0, 0);
     margin-top: 17px;
 }
-
-/* 
-.profile-user-name{
-    flex:0.5;
-}
-
-.profile-user-type{
-    flex:0.5;
-} */
