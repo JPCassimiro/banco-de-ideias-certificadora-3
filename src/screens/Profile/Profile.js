@@ -57,15 +57,7 @@ const ProfilePage = () => {
             {userControl && user ? (
                 <div>
                     <div>
-                        {ideasList ? <ListComponent logOutHandle={() => { logOutHandle() }} userSuperType={user.SuperType} email={auth.currentUser.email} ideas={ideasList} /> : <div>Carregando...</div>}
-
-                    </div>
-                    <div className="container">
-                        <p>
-                            Perfil de usuario
-                        </p>
-                        <p className="profile-user-name">{user.Name} você é um {user.Type}</p>
-                        {user.SuperType ? <p className="profile-user-type">Você também é um {user.SuperType}</p> : <div></div>}
+                        {ideasList ? <ListComponent userName={user.Name} userType={user.Type} logOutHandle={() => { logOutHandle() }} userSuperType={user.SuperType} email={auth.currentUser.email} ideas={ideasList} /> : <div>Carregando...</div>}
                     </div>
                 </div>
             ) : (<div>Carregando...</div>)}

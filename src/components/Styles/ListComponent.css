@@ -178,3 +178,22 @@ li {
 .AddIdea button:hover {
     background-color: #432a40;
 }
+
+.profile-information{
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    margin-top: 17px;
+}
+
+/* 
+.profile-user-name{
+    flex:0.5;
+}
+
+.profile-user-type{
+    flex:0.5;
+} */
