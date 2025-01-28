@@ -1,13 +1,11 @@
 Este é o repositório do projeto final da matéria certificadora de competências 3, da engenharia de computação do campus Cornélio Procópio da UTFPR. Nele temos um banco de ideias para uso no projeto de extensão [Meninas Digitais™](https://meninas.sbc.org.br).</br>
-Este projeto continua em progresso e não foi finalizado.
 
 - [Membros](#membros)
 - [Objetivo](#objetivo)
 - [Uso](#uso)
 - [Instalação](#instalação)
-- [Bugs conhecidos](#bugs-conhecidos)
-- [Bibliotecas Utilizadas (até o momento)](#bibliotecas-utilizadas-até-o-momento)
-- [Fereamentas utilizadas no desenvolvimento (até o momento)](#fereamentas-utilizadas-no-desenvolvimento-até-o-momento)
+- [Bibliotecas Utilizadas](#bibliotecas-utilizadas)
+- [Fereamentas utilizadas no desenvolvimento](#fereamentas-utilizadas-no-desenvolvimento)
 
 ## Membros
 
@@ -28,11 +26,6 @@ Esse é um espaço onde indivíduos podem postar ideias de como o projeto pode s
 
 O projeto se encontra hospedado e funcional no Github, através do recurso Pages, disponível no link: [https://jpcassimiro.github.io/banco-de-ideias-certificadora-3/](https://jpcassimiro.github.io/banco-de-ideias-certificadora-3/)</br>
 É necessário criar uma conta para acessar o projeto.</br>
-Atualmente, as telas prontas são:</br>
-
-    Cadastro;
-    Login;
-    Recuperação de senha.
 
 Imagens do projeto em execução:
 
@@ -56,19 +49,15 @@ Caso queira utilizar o projeto localmente siga os passos abaixo:
 Vídeo de instalação: https://www.youtube.com/watch?v=q3kZ33pHpgM
 
 
-## Bugs conhecidos
+## Bibliotecas Utilizadas
 
-Este bug só ocorre no Github Pages. Ao atualizar qualquer página que não seja a Homepage, o projeto apresenta um erro 404. Para continuar utilizando o projeto normalmente, volte à Homepage.</br>
+[React (puro, sem Next.js)(18.3.1)](https://github.com/facebook/react)</br>
+[Firebase (11.0.1)](https://github.com/firebase/firebase-js-sdk)</br>
+[gh-pages (6.2.0)](https://github.com/tschaub/gh-pages)</br>
+[React router (6.28.0)](https://github.com/remix-run/react-router)</br>
+[React Bootstrap (2.10.7)](https://github.com/react-bootstrap)</br>
 
-
-## Bibliotecas Utilizadas (até o momento)
-
-[React(puro, sem Next.js)(18.3.1)](https://github.com/facebook/react)</br>
-[Firebase(11.0.1)](https://github.com/firebase/firebase-js-sdk)</br>
-[gh-pages(6.2.0)](https://github.com/tschaub/gh-pages)</br>
-[React router(6.28.0)](https://github.com/remix-run/react-router)</br>
-
-## Fereamentas utilizadas no desenvolvimento (até o momento)
+## Fereamentas utilizadas no desenvolvimento
 
 [Firebase Console](https://firebase.google.com/?hl=pt-br)</br>
 
