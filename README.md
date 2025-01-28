@@ -46,7 +46,7 @@ Caso queira utilizar o projeto localmente siga os passos abaixo:
     
 [Node.js](https://nodejs.org/en/download/prebuilt-installer)
 
-Vídeo de instalação: https://www.youtube.com/watch?v=q3kZ33pHpgM
+Vídeo de instalação: https://youtu.be/tdwY-SaWmsc?si=7xLGPk6xLUrkX1PY
 
 
 ## Bibliotecas Utilizadas
